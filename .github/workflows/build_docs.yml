@@ -55,7 +55,6 @@ jobs:
     - name: commit build
       run: |
           git add docs
-          git diff --cached --quiet
           git commit --allow-empty -m 'Built latest docs'
           git push
           
