@@ -203,14 +203,16 @@
                <span class="s1">&#39;stable_layer&#39;</span><span class="p">:</span> <span class="n">stable_layer_method</span><span class="p">,</span>
                <span class="s1">&#39;mantle&#39;</span><span class="p">:</span>       <span class="n">mantle_method</span><span class="p">}</span>
 
+    <span class="c1">#Check which regions should be modelled have been specified</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">methods</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">r</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;parameters has no attribute </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">. Set to True or False&quot;</span>
+
     <span class="c1">#Check that supplied methods are consistent with regions specified in parameters</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">methods</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> is set to True in parameters but a method has not been specified for it&#39;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">==</span><span class="nb">str</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> is set to False in parameters but a method has been specified for that region. Ignoring method specified.&#39;</span><span class="p">)</span>
-            <span class="n">methods</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> is set to False in parameters but a method has been specified for that region.&#39;</span><span class="p">)</span>
 
     <span class="n">required_params</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">optional_params</span> <span class="o">=</span> <span class="p">{}</span>

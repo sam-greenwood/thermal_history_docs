@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>thermal_history.thermal_history.stable_layer_models.solid_FeS.main &mdash; thermal_history  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> thermal_history
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../simple_example.html">Running a simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Advanced.html">Adding new methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../API_index.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">thermal_history</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>thermal_history.thermal_history.stable_layer_models.solid_FeS.main</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for thermal_history.thermal_history.stable_layer_models.solid_FeS.main</h1><div class="highlight"><pre>
+<span></span><span class="n">Description</span> <span class="o">=</span> <span class="s1">&#39;Includes a solid FeS layer as a thermally stratified layer. To be used in conjunction with the solid_FeS core model.&#39;</span>
+
+
+<span class="c1">#List individually confirmed compatibility with other regions</span>
+<span class="n">compatibility</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;core&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;greenwood21&#39;</span><span class="p">],</span>
+                 <span class="s1">&#39;mantle&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;driscoll_bercovici14&#39;</span><span class="p">]}</span>
+
+
+<span class="kn">from</span> <span class="nn">...core_models.leeds.routines</span> <span class="kn">import</span> <span class="n">profiles</span> <span class="k">as</span> <span class="n">prof</span>
+<span class="kn">from</span> <span class="nn">...core_models.leeds.routines.snow</span> <span class="kn">import</span> <span class="n">snow_radius</span>
+<span class="kn">from</span> <span class="nn">...core_models.solid_FeS.routines.chemistry</span> <span class="kn">import</span> <span class="n">melting_temp_R18</span>
+<span class="kn">from</span> <span class="nn">..leeds_thermal.routines.diffusion</span> <span class="kn">import</span> <span class="n">diffusion</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#Import required fuctions from leeds_thermal, no changes needed to those</span>
+<span class="kn">from</span> <span class="nn">..leeds_thermal.main</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">evolve</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">required_params</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">leeds_thermal</span> <span class="k">as</span> <span class="n">leeds_thermal</span>
+
+<span class="c1"># Optional parameters. &#39;Name&#39;: (&#39;Description&#39;, default_value)</span>
+<span class="n">optional_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;layer_thickness&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;Initial size of FeS layer, leave to deault value of 0&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                   <span class="s1">&#39;max_resolution&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;Size of radial array for FeS layer. Default: 10&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+
+<span class="c1">#New method for solid FeS layer</span>
+<div class="viewcode-block" id="FeS_method"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.solid_FeS.main.html#thermal_history.thermal_history.stable_layer_models.solid_FeS.main.FeS_method">[docs]</a><span class="k">def</span> <span class="nf">FeS_method</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Pure thermal stratification</span>
+
+<span class="sd">    Solves the thermal diffusion solution and updates the layer size during one time iteration.</span>
+<span class="sd">    For stability, it may step in smaller time increments until the total model timestep has been</span>
+<span class="sd">    reached.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : ThermalModel</span>
+<span class="sd">        Main model class</span>
+
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">core</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span>
+    <span class="n">sl</span>  <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">stable_layer</span>
+    <span class="n">prm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span>
+
+    <span class="c1">#Read in values from model</span>
+    <span class="n">layer_thickness</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">layer_thickness</span>
+    <span class="n">r_s</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span> <span class="o">-</span> <span class="n">layer_thickness</span>
+    <span class="n">r_s_original</span> <span class="o">=</span> <span class="n">r_s</span><span class="o">*</span><span class="mi">1</span>
+
+    <span class="n">r_cmb</span>        <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span>
+    <span class="n">core_adiabat</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span>
+
+    <span class="n">Q_cmb</span>  <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">mantle</span><span class="o">.</span><span class="n">Q_cmb</span>
+
+    <span class="n">Tcen</span>   <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span>
+    <span class="n">dTa_dt</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">dT_dt</span>
+
+    <span class="n">T_grad_cmb</span> <span class="o">=</span> <span class="n">Q_cmb</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">r_cmb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">ADR</span> <span class="o">=</span> <span class="n">T_grad_cmb</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;dTa_dr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">=</span> <span class="n">ADR</span>
+
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">_snow_idx</span>
+    <span class="c1">#Cool adiabat and find new snow radius</span>
+    <span class="n">Tcen</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span> <span class="o">+</span> <span class="n">dTa_dt</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
+    <span class="n">Ta</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
+    <span class="n">Tm</span> <span class="o">=</span> <span class="n">melting_temp_R18</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">],</span>
+                          <span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">core</span><span class="o">.</span><span class="n">dc_dt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span>
+                          <span class="n">prm</span><span class="o">.</span><span class="n">core_melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">r_snow</span> <span class="o">=</span> <span class="n">snow_radius</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ta</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">Tm</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">r_snow</span>
+
+
+    <span class="k">if</span> <span class="n">r_snow</span> <span class="o">&lt;</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">:</span>
+
+        <span class="c1">#Boundary conditions</span>
+        <span class="n">lb_type</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">lb</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r_snow</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span><span class="p">)</span>
+
+        <span class="n">ub_type</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">ub</span> <span class="o">=</span> <span class="n">T_grad_cmb</span>
+
+        <span class="c1">#New grid</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">r_snow</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">max_resolution</span><span class="p">)</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">r</span><span class="o">&gt;</span><span class="n">core</span><span class="o">.</span><span class="n">r_snow</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&gt;</span><span class="n">core</span><span class="o">.</span><span class="n">r_snow</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">])</span>
+
+
+        <span class="c1">#Regrid core radial profiles onto finer stable layer grid</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">])</span>
+        <span class="n">k</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">])</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">])</span>
+
+        <span class="c1">#Thermal diffusivity</span>
+        <span class="n">D_T</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span>
+
+        <span class="c1">#Conductivity gradient</span>
+        <span class="n">dk_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1">#If whole core is stratified, lower BC should be zero flux</span>
+        <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lb</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1">#Calculate diffusion solution</span>
+        <span class="n">T_new</span> <span class="o">=</span> <span class="n">diffusion</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">D_T</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dk_dr</span><span class="p">,</span> <span class="p">(</span><span class="n">lb_type</span><span class="p">,</span><span class="n">lb</span><span class="p">),(</span><span class="n">ub_type</span><span class="p">,</span><span class="n">ub</span><span class="p">))</span>
+
+
+        <span class="c1">#Thermal gradient at Ts</span>
+        <span class="n">sl</span><span class="o">.</span><span class="n">T_grad_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">T_new</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">T_new</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">prm</span><span class="o">.</span><span class="n">max_resolution</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">)</span>
+        <span class="n">T_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">prm</span><span class="o">.</span><span class="n">max_resolution</span><span class="p">,</span> <span class="n">Ta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">sl</span><span class="o">.</span><span class="n">T_grad_s</span> <span class="o">=</span> <span class="n">T_grad_cmb</span>
+        <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+
+    <span class="c1">#Save new profiles. Keep original profiles until update() has been called.</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T_new</span>
+
+    <span class="n">sl</span><span class="o">.</span><span class="n">ds_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_s_new</span> <span class="o">-</span> <span class="n">r_s_original</span><span class="p">)</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
+
+    <span class="n">sl</span><span class="o">.</span><span class="n">lb_T</span> <span class="o">=</span> <span class="n">lb</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">ub_T</span> <span class="o">=</span> <span class="n">ub</span></div>
+
+<span class="c1">#Overwrite with simple FeS method.</span>
+<span class="n">leeds_thermal</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">pure_thermal_method</span> <span class="o">=</span> <span class="n">FeS_method</span>
+
+<span class="c1">#New function to determine when stable layer solution is needed.</span>
+<span class="c1">#No longer need to consider sub-adiabatic heat flows, simply when an FeS layer exists.</span>
+<div class="viewcode-block" id="pure_thermal_check"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.solid_FeS.main.html#thermal_history.thermal_history.stable_layer_models.solid_FeS.main.pure_thermal_check">[docs]</a><span class="k">def</span> <span class="nf">pure_thermal_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;Determine if stable layer solution is needed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Bool</span>
+<span class="sd">        Whether stable layer solution is needed this iteration</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1">#If FeS layer exists run method.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">r_snow</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+<span class="c1">#Overwrite leeds_thermal version</span>
+<span class="n">leeds_thermal</span><span class="o">.</span><span class="n">routines</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">pure_thermal_check</span> <span class="o">=</span> <span class="n">pure_thermal_check</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Sam Greenwood
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

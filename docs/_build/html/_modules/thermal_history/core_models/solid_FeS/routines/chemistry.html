@@ -158,6 +158,9 @@
 <span class="kn">from</span> <span class="nn">thermal_history.utils.optimised_funcs</span> <span class="kn">import</span> <span class="n">polyval</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
 <span class="kn">from</span> <span class="nn">...leeds.routines.chemistry</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1">#Import all functions from the leeds core model. Then redefine melting curve.</span>
 
 
@@ -307,27 +310,8 @@
 
         <span class="n">params</span> <span class="o">=</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span> <span class="c1">#Don&#39;t use first string</span>
 
-        <span class="n">T_eutectic</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-        <span class="n">dT_e_dP</span> <span class="o">=</span> <span class="o">-</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">Tm_fes</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">P</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="n">P</span><span class="o">**</span><span class="mi">2</span>
-        <span class="n">dTm_fes_dP</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="n">P</span>
-
-        <span class="n">x_eu</span> <span class="o">=</span> <span class="mf">0.11</span> <span class="o">+</span> <span class="mf">0.187</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
-        <span class="n">dx_dP</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="mf">0.187</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
-
-        <span class="n">Tm</span> <span class="o">=</span> <span class="n">Tm_fes</span> <span class="o">+</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_l</span> <span class="o">-</span> <span class="mf">0.3647</span><span class="p">)</span>
-
-        <span class="n">dTm_dP</span> <span class="o">=</span> <span class="n">dTm_fes_dP</span> <span class="o">+</span> <span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">*</span><span class="n">dTm_fes_dP</span> <span class="o">-</span> <span class="n">Tm_fes</span><span class="o">*</span><span class="n">dx_dP</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">*</span><span class="n">dT_e_dP</span> <span class="o">-</span> <span class="n">T_eutectic</span><span class="o">*</span><span class="n">dx_dP</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dTm_dP</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Tm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-        <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-
-        <span class="n">Tm_fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm_fes</span> <span class="o">+</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.3647</span><span class="p">))</span>
+        <span class="n">Tm_fe</span><span class="p">,</span> <span class="n">Tm</span><span class="p">,</span> <span class="n">dTm_dP</span> <span class="o">=</span> <span class="n">melting_temp_R18</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">params</span><span class="p">)</span>
+        
         <span class="n">dTm</span> <span class="o">=</span> <span class="n">Tm</span> <span class="o">-</span> <span class="n">Tm_fe</span>
 
 
@@ -339,6 +323,56 @@
 
     <span class="k">return</span> <span class="n">Tm_fe</span><span class="p">,</span> <span class="n">Tm</span><span class="p">,</span> <span class="n">dTm_dP</span></div>
 
+
+<div class="viewcode-block" id="melting_temp_R18"><a class="viewcode-back" href="../../../../../thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_temp_R18">[docs]</a><span class="k">def</span> <span class="nf">melting_temp_R18</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">conc_l</span><span class="p">,</span> <span class="n">melting_params</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Melting curve of Ruckreimen et al. (2018) for S rich Fe-S alloys.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : array</span>
+<span class="sd">        radial array for whole core</span>
+<span class="sd">    P : array</span>
+<span class="sd">        pressure array for whole core</span>
+<span class="sd">    conc_l : float</span>
+<span class="sd">        mass fraction of S</span>
+<span class="sd">    melting_params : array</span>
+<span class="sd">        parameters for melting temperature.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    (array, array)</span>
+<span class="sd">        Iron melting temperature and iron-sulphur alloy melting temperature.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1">#Eutectic temperature</span>
+    <span class="n">T_eutectic</span> <span class="o">=</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="n">melting_params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">dT_e_dP</span> <span class="o">=</span> <span class="o">-</span><span class="n">melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#gradient with P.</span>
+
+    <span class="c1">#Melting temp of FeS</span>
+    <span class="n">Tm_fes</span> <span class="o">=</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">P</span> <span class="o">-</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="n">P</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">dTm_fes_dP</span> <span class="o">=</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">melting_params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="n">P</span> <span class="c1">#gradient with P</span>
+
+    <span class="c1">#Eutectic composition</span>
+    <span class="n">x_eu</span> <span class="o">=</span> <span class="mf">0.11</span> <span class="o">+</span> <span class="mf">0.187</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+    <span class="n">dx_dP</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="mf">0.187</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="n">P</span><span class="p">)</span> <span class="c1">#gradient with P</span>
+
+    <span class="k">if</span> <span class="n">conc_l</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_eu</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Liquid bulk has reached eutectic composition!! conc_l:</span><span class="si">{</span><span class="n">conc_l</span><span class="si">}</span><span class="s1">, min(x_eu): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_eu</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">Tm</span> <span class="o">=</span> <span class="n">Tm_fes</span> <span class="o">+</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="n">conc_l</span> <span class="o">-</span> <span class="mf">0.3647</span><span class="p">)</span>
+
+    <span class="n">dTm_dP</span> <span class="o">=</span> <span class="n">dTm_fes_dP</span> <span class="o">+</span> <span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">*</span><span class="n">dTm_fes_dP</span> <span class="o">-</span> <span class="n">Tm_fes</span><span class="o">*</span><span class="n">dx_dP</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">*</span><span class="n">dT_e_dP</span> <span class="o">-</span> <span class="n">T_eutectic</span><span class="o">*</span><span class="n">dx_dP</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dTm_dP</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Tm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dTm_dP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="n">Tm_fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm_fes</span> <span class="o">+</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.3647</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">Tm_fe</span><span class="p">,</span> <span class="n">Tm</span><span class="p">,</span> <span class="n">dTm_dP</span></div>
 </pre></div>
 
            </div>

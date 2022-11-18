@@ -192,16 +192,16 @@
         <span class="n">prm</span><span class="o">.</span><span class="n">primordial_layer</span> <span class="o">=</span> <span class="mi">0</span>
 
 
+    <span class="c1">#COMMENTED OUT BECAUSE CORE MODEL NOW ALWAYS REQUIRED.</span>
     <span class="c1">#If no core model is being used, assume simple case of fully molten core</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">prm</span><span class="o">.</span><span class="n">core</span><span class="p">:</span>
-        <span class="n">core</span><span class="o">.</span><span class="n">T_cmb</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">T_cmb</span>
-        <span class="n">core</span><span class="o">.</span><span class="n">ri</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">core</span><span class="o">.</span><span class="n">r_snow</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span>
+    <span class="c1"># if not prm.core:</span>
+    <span class="c1">#     core.ri = 0</span>
+    <span class="c1">#     core.r_snow = prm.r_cmb</span>
 
-        <span class="c1">#Set core profiles</span>
-        <span class="n">prof</span><span class="o">.</span><span class="n">basic_profiles</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-        <span class="n">prof</span><span class="o">.</span><span class="n">temp_dependent_profiles</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-
+    <span class="c1">#     #Set core profiles</span>
+    <span class="c1">#     prof.basic_profiles(model)</span>
+    <span class="c1">#     prof.temp_dependent_profiles(model)</span>
+    <span class="k">assert</span> <span class="n">prm</span><span class="o">.</span><span class="n">core</span><span class="p">,</span> <span class="s2">&quot;A core model is required for this stable layer method.&quot;</span>
 
     <span class="c1">#Initialise profiles dictionaries</span>
     <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span> <span class="o">=</span> <span class="p">{}</span>
@@ -273,10 +273,6 @@
             <span class="n">Ek</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapz</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">dT_dr</span><span class="o">/</span><span class="n">T_initial</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">r_initial</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">r_initial</span><span class="p">)</span>
 
 
-        <span class="c1"># rho =  prof.density(r_initial, prm.core_density_liquid_params)</span>
-        <span class="c1"># g   =  np.interp(r_initial, core.profiles[&#39;r&#39;], core.profiles[&#39;g&#39;])</span>
-
-    
         <span class="c1">#Time step model</span>
         <span class="n">pure_thermal_method</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
@@ -316,7 +312,8 @@
 
 
         <span class="n">cp</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">])</span>
-        <span class="n">rho</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_liquid_density_params</span><span class="p">)</span>
+        <span class="c1"># rho = prof.density(r1, prm.core_liquid_density_params)</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">])</span> <span class="c1">#Better to use for when stable layer may cover material not described by core_liquid_density_params</span>
         <span class="n">Qs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">en</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dT_dt</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span>
         <span class="n">Es</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">en</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dT_dt</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">T1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">T1</span><span class="p">))</span>
         <span class="n">sl</span><span class="o">.</span><span class="n">dT_dt_s</span> <span class="o">=</span> <span class="n">dT_dt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1">#Save cooling rate at base of layer</span>
@@ -372,7 +369,8 @@
     <span class="n">prm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span>
 
     <span class="c1">#Update profiles</span>
-    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
     <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;Ta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">Tcen</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span><span class="p">)</span>
     <span class="n">sl</span><span class="o">.</span><span class="n">T_grad_s</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat_grad</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">rs</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">Tcen</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span><span class="p">)</span>
 

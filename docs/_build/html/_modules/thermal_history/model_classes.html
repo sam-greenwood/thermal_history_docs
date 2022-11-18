@@ -344,15 +344,6 @@
             <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 
-        <span class="c1"># #Set log level and log file</span>
-        <span class="c1"># import logging</span>
-        <span class="c1"># if debug:</span>
-        <span class="c1">#     logging.basicConfig(filename=self.parameters.filename+&#39;.log&#39;, level=logging.DEBUG)</span>
-        <span class="c1"># else:</span>
-        <span class="c1">#     logging.basicConfig(filename=self.parameters.filename+&#39;.log&#39;, level=logging.INFO)</span>
-
-        <span class="c1"># self.logger = logging.getLogger(__name__)</span>
-
         <span class="c1">#Print out initial conditions</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">~~~~~ Initial Conditions ~~~~~&#39;</span><span class="p">)</span>
@@ -570,6 +561,31 @@
 
         <span class="k">return</span> <span class="n">x</span></div>
 
+<div class="viewcode-block" id="ThermalModel.warnings"><a class="viewcode-back" href="../../thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.warnings">[docs]</a>    <span class="k">def</span> <span class="nf">warnings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;returns the number of warnings generated in the log file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        verbose : bool, optional</span>
+<span class="sd">            print out each warning, by default True</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            number of warnings</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1">#Get number of warnings</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">n_warn</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">n_warn</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">n_warn</span></div>
+
 <div class="viewcode-block" id="ThermalModel.write_data"><a class="viewcode-back" href="../../thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.write_data">[docs]</a>    <span class="k">def</span> <span class="nf">write_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Writes the model data to a binary file.</span>
 
@@ -603,6 +619,11 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1"> already exists&#39;</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1"> already exists&#39;</span><span class="p">)</span>
+
+        <span class="c1">#Check for warnings in log file and alert user if needed</span>
+        <span class="n">n_warn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">warnings</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_warn</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Note </span><span class="si">{</span><span class="n">n_warn</span><span class="si">}</span><span class="s1"> warnings present in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1">#Convert to numpy array</span>
         <span class="n">numpy_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_dict_to_numpy_array</span><span class="p">()</span>

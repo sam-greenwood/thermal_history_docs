@@ -99,6 +99,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.mantle_models.html">mantle_models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.stable_layer_models.html">stable_layer_models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.html">thermal_history</a></li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.utils.html">utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.model.html">model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.model_classes.html">model_classes</a></li>
@@ -219,6 +220,28 @@ Values are calculated on the same radial grid as all core profiles.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If an unrecognised string in core_melting_params is given.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="thermal_history.core_models.solid_FeS.routines.chemistry.melting_temp_R18">
+<span class="sig-name descname"><span class="pre">melting_temp_R18</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conc_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">melting_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/core_models/solid_FeS/routines/chemistry.html#melting_temp_R18"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.core_models.solid_FeS.routines.chemistry.melting_temp_R18" title="Permalink to this definition">¶</a></dt>
+<dd><p>Melting curve of Ruckreimen et al. (2018) for S rich Fe-S alloys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>array</em>) – radial array for whole core</p></li>
+<li><p><strong>P</strong> (<em>array</em>) – pressure array for whole core</p></li>
+<li><p><strong>conc_l</strong> (<em>float</em>) – mass fraction of S</p></li>
+<li><p><strong>melting_params</strong> (<em>array</em>) – parameters for melting temperature.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iron melting temperature and iron-sulphur alloy melting temperature.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(array, array)</p>
 </dd>
 </dl>
 </dd></dl>
