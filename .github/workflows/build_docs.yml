@@ -34,6 +34,12 @@ jobs:
         conda install sphinx sphinx_rtd_theme
         conda install -c conda-forge myst-parser
         
+    - name: get latest thermal_history docs
+      run : |
+        git clone https://github.com/sam-greenwood/thermal_history.git
+        cp -r thermal_history/docs .
+        rm -rf thermal_history
+        
     - name: run sphinx
       run: |
         cd docs
@@ -48,7 +54,7 @@ jobs:
     #Commit the new built html pages
     - name: commit build
       run: |
-          git add docs/_build/html
+          git add docs
           git diff --cached --quiet
           if [ $? != 0 ]
           then
