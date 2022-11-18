@@ -21,6 +21,13 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.10'
+        
+    - name: get latest thermal_history docs
+      run : |
+        git clone https://github.com/sam-greenwood/thermal_history.git
+        cp -r thermal_history/docs .
+        cp thermal_history/environment.yml .
+        rm -rf thermal_history
 
     #Add conda
     - name: Add conda to system path
@@ -34,11 +41,7 @@ jobs:
         conda install sphinx sphinx_rtd_theme
         conda install -c conda-forge myst-parser
         
-    - name: get latest thermal_history docs
-      run : |
-        git clone https://github.com/sam-greenwood/thermal_history.git
-        cp -r thermal_history/docs .
-        rm -rf thermal_history
+
         
     - name: run sphinx
       run: |
@@ -55,6 +58,7 @@ jobs:
     - name: commit build
       run: |
           git add docs
+          git add environment.yml
           git diff --cached --quiet
           if [ $? != 0 ]
           then
