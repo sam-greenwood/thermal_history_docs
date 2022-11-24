@@ -91,6 +91,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Adding new methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-the-package">1. Overview of the package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#required-format-for-main-py">2. Required format for main.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">3. Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="API_index.html">API</a></li>
@@ -165,57 +166,54 @@
 <h2>1. Overview of the package<a class="headerlink" href="#overview-of-the-package" title="Permalink to this heading">¶</a></h2>
 <p>To start it makes sense to explain the overall structure of the python package, here is an abbrieviated overview:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thermal_history</span>
-<span class="o">|</span>
-<span class="o">|</span>   <span class="n">model_classes</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="n">model</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span><span class="n">___core_models</span>
-<span class="o">|</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">|</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="o">|</span><span class="n">___leeds</span>
-<span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>   <span class="n">main</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span><span class="n">___routines</span>
-<span class="o">|</span>   <span class="o">|</span>       <span class="o">|</span>
-<span class="o">|</span>   <span class="o">|</span>       <span class="o">|</span>   <span class="n">profiles</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="o">|</span>       <span class="o">|</span>   <span class="n">chemistry</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="o">|</span>       <span class="o">....</span>
-<span class="o">|</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">|</span><span class="n">___simple_test</span>
-<span class="o">|</span>       <span class="o">|</span>
-<span class="o">|</span>       <span class="o">|</span>   <span class="n">main</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>       <span class="o">|</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>          
-<span class="o">|</span>
-<span class="o">|</span>
-<span class="o">|</span><span class="n">___stable_layer_models</span>
-<span class="o">|</span>   <span class="o">|</span>
-<span class="o">|</span>   <span class="o">|</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>   <span class="o">|</span><span class="n">___leeds_thermal</span>
-<span class="o">|</span>       <span class="o">|</span>
-<span class="o">|</span>       <span class="o">|</span>   <span class="n">main</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>       <span class="o">|</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>       <span class="o">|</span><span class="n">___routines</span>
-<span class="o">|</span>           <span class="o">|</span>
-<span class="o">|</span>           <span class="o">|</span>   <span class="n">diffusion</span><span class="o">.</span><span class="n">py</span>
-<span class="o">|</span>           <span class="o">...</span>
-<span class="o">...</span>
-
+      <span class="o">|</span>
+      <span class="o">|</span>
+   <span class="n">___</span><span class="o">|</span><span class="n">____________________________________________________________</span><span class="o">....</span>
+  <span class="o">|</span>                  <span class="o">|</span>          <span class="o">|</span>            <span class="o">|</span>                <span class="o">|</span>
+<span class="n">model_classes</span><span class="o">.</span><span class="n">py</span>   <span class="n">model</span><span class="o">.</span><span class="n">py</span>  <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>   <span class="n">core_models</span>   <span class="n">stable_layer_models</span>
+                                             <span class="o">|</span>                            <span class="o">|</span>
+              <span class="n">_______________________________</span><span class="o">|</span>                            <span class="o">|</span>       
+             <span class="o">|</span>                                                            <span class="o">|</span>
+             <span class="o">|</span>                                                            <span class="o">|</span>
+   <span class="n">__________</span><span class="o">|</span><span class="n">_____</span><span class="o">....</span>                                                   <span class="o">|</span>
+  <span class="o">|</span>           <span class="o">|</span>                                                           <span class="o">|</span>
+<span class="n">leeds</span>   <span class="n">simple_test</span>                                                       <span class="o">|</span>
+  <span class="o">|</span>           <span class="o">|</span><span class="n">_________________________________________</span>                  <span class="o">|</span>
+  <span class="o">|</span>                                                     <span class="o">|</span>                 <span class="o">|</span>    
+  <span class="o">|</span><span class="n">_____________________________________</span>             <span class="n">___</span><span class="o">|</span><span class="n">________</span>         <span class="o">|</span>
+  <span class="o">|</span>          <span class="o">|</span>              <span class="o">|</span>           <span class="o">|</span>           <span class="o">|</span>           <span class="o">|</span>         <span class="o">|</span>
+<span class="n">main</span><span class="o">.</span><span class="n">py</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>   <span class="n">_readme</span><span class="o">.</span><span class="n">md</span>   <span class="n">routines</span>      <span class="n">main</span><span class="o">.</span><span class="n">py</span>  <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>   <span class="o">|</span>
+                                        <span class="o">|</span>                                 <span class="o">|</span>
+                                        <span class="o">|</span>                                 <span class="o">|</span>
+                            <span class="n">____________</span><span class="o">|</span><span class="n">___________</span><span class="o">....</span>                  <span class="o">|</span>
+                           <span class="o">|</span>                <span class="o">|</span>                             <span class="o">|</span>
+                        <span class="n">profiles</span><span class="o">.</span><span class="n">py</span>   <span class="n">chemistry</span><span class="o">.</span><span class="n">py</span>                        <span class="o">|</span>
+                                                                          <span class="o">|</span>
+                                                                          <span class="o">|</span>
+                                                                          <span class="o">|</span>
+                                                            <span class="n">______________</span><span class="o">|</span><span class="n">______</span><span class="o">...</span>
+                                                           <span class="o">|</span>               <span class="o">|</span>
+                                                        <span class="n">_init__</span><span class="o">.</span><span class="n">py</span>   <span class="n">leeds_thermal</span>
+                                                                           <span class="o">|</span>
+                                      <span class="n">_____________________________________</span><span class="o">|</span>
+                                     <span class="o">|</span>          <span class="o">|</span>              <span class="o">|</span>           <span class="o">|</span>        
+                                  <span class="n">main</span><span class="o">.</span><span class="n">py</span>   <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>   <span class="n">_readme</span><span class="o">.</span><span class="n">md</span>   <span class="n">routines</span>
+                                                                         <span class="o">|</span>
+                                                                         <span class="o">|</span>
+                                                                      <span class="n">___</span><span class="o">|</span><span class="n">___</span><span class="o">...</span>   
+                                                                     <span class="o">|</span>
+                                                                <span class="n">diffusion</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>The code for any specific numerical model is contained within one of the sub-packages depending on it’s type (<code class="docutils literal notranslate"><span class="pre">core_models</span></code>/<code class="docutils literal notranslate"><span class="pre">stable_layer_models</span></code>/<code class="docutils literal notranslate"><span class="pre">mantle_models</span></code>). Let’s focus on the <code class="docutils literal notranslate"><span class="pre">core_models</span></code>. Here there are 2 different methods for solving the core thermal evolution: <code class="docutils literal notranslate"><span class="pre">leeds</span></code> and <code class="docutils literal notranslate"><span class="pre">simple_test</span></code>. They are each contained within their own folder (treated as another sub-package due to the presence of <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>), meaning they are isolated from one another and removing any chance of getting them mixed up. When a model is initialised, for example, with <code class="docutils literal notranslate"><span class="pre">setup_model(prm,</span> <span class="pre">core_method='simple_test')</span></code>, the code will look to import <code class="docutils literal notranslate"><span class="pre">thermal_history.core_models.simple_test.main</span></code>. Other files can exist within the folder (e.g. <code class="docutils literal notranslate"><span class="pre">core_models.leeds.routines</span></code> contains functions that are called by code in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>) but <code class="docutils literal notranslate"><span class="pre">main.py</span></code> must be there.</p>
+<p>The code for any specific numerical model is contained within one of the sub-packages depending on it’s type (<code class="docutils literal notranslate"><span class="pre">core_models</span></code>/<code class="docutils literal notranslate"><span class="pre">stable_layer_models</span></code>/<code class="docutils literal notranslate"><span class="pre">mantle_models</span></code>). Let’s focus on the <code class="docutils literal notranslate"><span class="pre">core_models</span></code>. Here there are 2 different methods for solving the core thermal evolution: <code class="docutils literal notranslate"><span class="pre">leeds</span></code> and <code class="docutils literal notranslate"><span class="pre">simple_test</span></code>. They are each contained within their own folder (treated as another sub-package due to the presence of <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>), meaning they are isolated from one another and removing any chance of getting them mixed up. When a model is initialised, for example, with <code class="docutils literal notranslate"><span class="pre">setup_model(prm,</span> <span class="pre">core_method='simple_test')</span></code>, the code will look to import <code class="docutils literal notranslate"><span class="pre">thermal_history.core_models.simple_test.main</span></code>. Other files can exist within the folder (e.g. <code class="docutils literal notranslate"><span class="pre">core_models.leeds.routines</span></code> contains functions that are called by code in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>) but <code class="docutils literal notranslate"><span class="pre">main.py</span></code> is the required file to be there.</p>
+<p>An additional file is present in the model folders: <code class="docutils literal notranslate"><span class="pre">_readme.md</span></code>. This will be explained in the documentation section below.</p>
 </section>
 <section id="required-format-for-main-py">
 <h2>2. Required format for main.py<a class="headerlink" href="#required-format-for-main-py" title="Permalink to this heading">¶</a></h2>
-<p>There are 3 functions expected to be defined in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. They are: <code class="docutils literal notranslate"><span class="pre">setup</span></code>, <code class="docutils literal notranslate"><span class="pre">evolve</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code>. All take a single argument (the ThermalModel class that is created by <code class="docutils literal notranslate"><span class="pre">setup_model()</span></code> is passed to them) and none of them return anything as they instead set the attributes of ThermalModel. There are also 2 dictionaries, <code class="docutils literal notranslate"><span class="pre">required_params</span></code> and <code class="docutils literal notranslate"><span class="pre">optional_params</span></code>, that must de defined within. Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> in simple_test, starting with the top of the file:</p>
+<p>There are 3 functions expected to be defined in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. They are: <code class="docutils literal notranslate"><span class="pre">setup</span></code>, <code class="docutils literal notranslate"><span class="pre">evolve</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code>. All take a single argument (the ThermalModel class that is created by <code class="docutils literal notranslate"><span class="pre">setup_model()</span></code> is passed to them) and none of them return anything as they instead set the attributes of ThermalModel. There are also 2 dictionaries, <code class="docutils literal notranslate"><span class="pre">required_params</span></code> and <code class="docutils literal notranslate"><span class="pre">optional_params</span></code>, that must de defined within <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> in simple_test, starting with the top of the file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1">#Description of this model3</span>
 <span class="n">Description</span> <span class="o">=</span> <span class="s1">&#39;Simple example core model.&#39;</span>
-
-<span class="c1">#List individually confirmed compatibility with methods for other regions (give the names of the methods in the list if any).</span>
-<span class="n">compatibility</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;stable_layer&#39;</span><span class="p">:</span> <span class="p">[],</span>
-                 <span class="s1">&#39;mantle&#39;</span><span class="p">:</span> <span class="p">[]}</span>
 
 <span class="c1">#import our logger</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -224,7 +222,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<p>These are all optional but can help the code determine some useful information about the model. <code class="docutils literal notranslate"><span class="pre">Description</span></code> is just that, a brief overview of what this model is. <code class="docutils literal notranslate"><span class="pre">compatibility</span></code> is a dictionary that tells the code if this method works when used in conjuction with other methods. As an example, this doesn’t work with any of the methods for other regions, so can only be run on it’s own. Next we have imported the logger, useful if you want to print some diagnostic information to the log file but not necessary. Numpy is imported at the end since it is needed by our model get the value of pi in <code class="docutils literal notranslate"><span class="pre">evolve()</span></code>.</p>
+<p>These are all optional but can help the code determine some useful information about the model. <code class="docutils literal notranslate"><span class="pre">Description</span></code> is just that, a brief overview of what this model is, used when the utility function <code class="docutils literal notranslate"><span class="pre">thermal_history.utils..</span> </code>compatibility<code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">a</span> <span class="pre">dictionary</span> <span class="pre">that</span> <span class="pre">tells</span> <span class="pre">the</span> <span class="pre">code</span> <span class="pre">if</span> <span class="pre">this</span> <span class="pre">method</span> <span class="pre">works</span> <span class="pre">when</span> <span class="pre">used</span> <span class="pre">in</span> <span class="pre">conjuction</span> <span class="pre">with</span> <span class="pre">other</span> <span class="pre">methods.</span> <span class="pre">As</span> <span class="pre">an</span> <span class="pre">example,</span> <span class="pre">this</span> <span class="pre">doesn't</span> <span class="pre">work</span> <span class="pre">with</span> <span class="pre">any</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">methods</span> <span class="pre">for</span> <span class="pre">other</span> <span class="pre">regions,</span> <span class="pre">so</span> <span class="pre">can</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">run</span> <span class="pre">on</span> <span class="pre">it's</span> <span class="pre">own.</span> <span class="pre">Next</span> <span class="pre">we</span> <span class="pre">have</span> <span class="pre">imported</span> <span class="pre">the</span> <span class="pre">logger,</span> <span class="pre">useful</span> <span class="pre">if</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">print</span> <span class="pre">some</span> <span class="pre">diagnostic</span> <span class="pre">information</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">log</span> <span class="pre">file</span> <span class="pre">but</span> <span class="pre">not</span> <span class="pre">necessary.</span> <span class="pre">Numpy</span> <span class="pre">is</span> <span class="pre">imported</span> <span class="pre">at</span> <span class="pre">the</span> <span class="pre">end</span> <span class="pre">since</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">needed</span> <span class="pre">by</span> <span class="pre">our</span> <span class="pre">model</span> <span class="pre">get</span> <span class="pre">the</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">pi</span> <span class="pre">in</span></code>evolve()`.</p>
 <p>Next we have the first of the required functions: <code class="docutils literal notranslate"><span class="pre">setup()</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="c1">#Sets up any inital conditions</span>
@@ -294,6 +292,24 @@
 </pre></div>
 </div>
 <p>These could just be set to empty dictionaries which may be useful while developing a model but once a model is finalised (and particularly if someone else is to use it) it is a good idea to make sure these are fully populated.</p>
+</section>
+<section id="documentation">
+<h2>3. Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<p>These instructions are aimed at anyone looking to have their changes to the thermal_history package reflected in the documentation.</p>
+<p>Documentation for this repo is handled by another Github repo: https://github.com/sam-greenwood/thermal_history_docs. See the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> to see how the docs are automatically built and published to Github pages.</p>
+<p>Whenever changes are made to the main thermal_history Github repo are made, this triggers the documentation repo to copy the latest version of the main repository, rebuild the documentation, and publish it to a Github pages site. Note the use of PAT tokens are required to give one repo permission to trigger a workflow once a workflow on another repo has run. Sphinx is used to build the documentation and its configuration file, templates, and any additional information such as the file containing these instructions can be found in <code class="docutils literal notranslate"><span class="pre">docs/</span></code>. A handy script <code class="docutils literal notranslate"><span class="pre">docs/create_docs.sh</span></code> is used to run the commands to build the docs and can be run locally and contains info on required packages to be installed to run. Sphinx automatically searches through the docstrings throughout the thermal_history package and builds the html files for the site. The <code class="docutils literal notranslate"><span class="pre">docs/_source/conf.py</span></code> file is setup to support the Numpy style docstrings for functions/classes.</p>
+<p>Sphinx first generates rst files before building the html files from them. The documentation is setup to automatically generate rst files for each module that exists within thermal_history using the included templates. <code class="docutils literal notranslate"><span class="pre">docs/_source/index.rst</span></code> is not automatically generated and is used to control the appearance of the top level page of the documentation. Markdown files have been used to write the README and other pages due to their readability when compared to rst, with Sphinx supporting them through the use of the Myst parser (https://myst-parser.readthedocs.io/en/latest/index.html) as specified in the <code class="docutils literal notranslate"><span class="pre">docs/_source/conf.py</span></code> file.</p>
+<p>As previously mentioned, each model folder (e.g. <code class="docutils literal notranslate"><span class="pre">thermal_history/core_models/leeds</span></code>) may contain an optional markdown file. This markdown file contains more in depth information about that particular model and is used when the documentation is built by having the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file include it into its docstring. This ensures that the markdown is placed onto the main page about the specific model in the API. For example, the docstring of the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">leeds</span></code> core model directory reads:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. include:: ../../thermal_history/core_models/leeds/_readme.md</span>
+<span class="sd">   :parser: myst_parser.sphinx_</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1">#Path to readme is relative to the docs/_source directory.</span>
+<span class="c1">#You may need to update the &#39;docutils&#39; python package to get</span>
+<span class="c1">#the myst_parser support</span>
+</pre></div>
+</div>
+<p>This tells the documentation tool sphinx to add the markdown to the docstring using the myst parser (which adds markdown support to sphinx). You can see the result of this here: https://sam-greenwood.github.io/thermal_history_docs/_build/html/thermal_history.core_models.leeds.html</p>
 </section>
 </section>
 

@@ -192,6 +192,13 @@ Inside the file looks like:</p>
 <span class="n">create_parameters_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">core_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stable_layer_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mantle_method</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> 
 </pre></div>
 </div>
+<p>To see what models are available to run, another useful utility function exists:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">thermal_history.utils</span> <span class="kn">import</span> <span class="n">get_available_models</span>
+
+<span class="n">get_available_models</span><span class="p">()</span> <span class="c1">#Prints available choices for core/mantle/stable_layer.</span>
+</pre></div>
+</div>
+<p>For this example, we will be using the ‘simple_test’ core model.</p>
 <p>First thing to do is load in the parameters, do this with</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">thermal_history.model</span> <span class="kn">import</span> <span class="n">Parameters</span>
 
