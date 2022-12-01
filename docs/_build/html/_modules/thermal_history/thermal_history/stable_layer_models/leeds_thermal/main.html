@@ -528,8 +528,6 @@
 
         <span class="c1">#Thermal diffusivity</span>
         <span class="n">D_T</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span>
-        <span class="c1">#dk_dr * 1/(rho*cp). Not the same as the diffusivity gradient</span>
-        <span class="n">dD_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span>
         <span class="n">dk_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 
@@ -549,16 +547,6 @@
 
         <span class="c1">#Calculate diffusion solution</span>
         <span class="n">T_new</span> <span class="o">=</span> <span class="n">diffusion</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dt_small</span><span class="p">,</span> <span class="n">D_T</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dk_dr</span><span class="p">,</span> <span class="p">(</span><span class="n">lb_type</span><span class="p">,</span><span class="n">lb</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="n">ub</span><span class="p">))</span>
-
-        <span class="c1"># if r[0] == 0:</span>
-        <span class="c1">#     Tcen = T_new[0]</span>
-
-        <span class="c1">#     Qs_test = -4*np.pi*trapezoid(r, r**2 * ((T_new-T)/dt_small) *rho*cp)[-1]</span>
-        <span class="c1">#     heat_in = 4*np.pi*r[-1]**2 * -k[-1] * ub</span>
-        <span class="c1">#     breakpoint()</span>
-
-        <span class="c1"># if np.isnan(T_new[0]):</span>
-        <span class="c1">#     breakpoint()</span>
 
 
         <span class="c1">#Mix layer (experimental function, not used by default)</span>
@@ -598,6 +586,10 @@
                 <span class="k">if</span> <span class="n">factor</span> <span class="o">&gt;</span> <span class="mi">64</span> <span class="ow">or</span> <span class="n">ADR</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span> <span class="o">-</span> <span class="n">time_gone</span>
                     <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1">#Ensure stable layer doesn&#39;t go below ICB</span>
+        <span class="k">if</span> <span class="n">r_s_new</span> <span class="o">&lt;</span> <span class="n">core</span><span class="o">.</span><span class="n">ri</span><span class="p">:</span>
+            <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">core</span><span class="o">.</span><span class="n">ri</span><span class="o">+</span><span class="mf">10e3</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">])</span> <span class="c1">#At least 10km above ICB.</span>
 
         <span class="n">layer_thickness</span> <span class="o">=</span> <span class="n">r_cmb</span> <span class="o">-</span> <span class="n">r_s_new</span>
 
