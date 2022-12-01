@@ -5,4 +5,4 @@
 https://sam-greenwood.github.io/thermal_history_docs/_build/html/index.html
 
 
-This repo to automatically pull in latest changes to thermal_history and build the documentation for it.
+This repo will automatically pull in latest changes to thermal_history and build the documentation for it.
