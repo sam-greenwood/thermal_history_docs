@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>thermal_history.thermal_history.stable_layer_models.FeS.main &mdash; thermal_history  documentation</title>
+  <title>thermal_history.thermal_history.stable_layer_models.FeS_convecting.main &mdash; thermal_history  documentation</title>
   
 
   
@@ -134,7 +134,7 @@
         
           <li><a href="../../../../index.html">Module code</a> &raquo;</li>
         
-      <li>thermal_history.thermal_history.stable_layer_models.FeS.main</li>
+      <li>thermal_history.thermal_history.stable_layer_models.FeS_convecting.main</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -149,7 +149,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for thermal_history.thermal_history.stable_layer_models.FeS.main</h1><div class="highlight"><pre>
+  <h1>Source code for thermal_history.thermal_history.stable_layer_models.FeS_convecting.main</h1><div class="highlight"><pre>
 <span></span><span class="c1">#Short description for use with thermal_history.utils.available_models()</span>
 <span class="n">Description</span> <span class="o">=</span> <span class="s1">&#39;Thermal stratification with embedded FeS layer for Mercury. This is under development!&#39;</span>
 
@@ -165,6 +165,7 @@
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">leeds_thermal</span>
 
 <span class="kn">from</span> <span class="nn">...core_models.leeds.routines</span> <span class="kn">import</span> <span class="n">profiles</span> <span class="k">as</span> <span class="n">prof</span>
+<span class="kn">from</span> <span class="nn">...core_models.leeds.routines</span> <span class="kn">import</span> <span class="n">energy</span> <span class="k">as</span> <span class="n">en</span>
 <span class="kn">from</span> <span class="nn">..leeds_thermal.routines</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">func</span>
 <span class="kn">from</span> <span class="nn">.routines.diffusion</span> <span class="kn">import</span> <span class="n">diffusion_uneven</span><span class="p">,</span> <span class="n">diffusion_discont</span>
 
@@ -193,10 +194,13 @@
     <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">Tcen</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Q_fes</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;Qa&#39;</span><span class="p">][</span><span class="n">core</span><span class="o">.</span><span class="n">_fes_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-
     <span class="c1">#Reset profiles with new temperature profile</span>
     <span class="n">prof</span><span class="o">.</span><span class="n">basic_profiles</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
     <span class="n">prof</span><span class="o">.</span><span class="n">temp_dependent_profiles</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1">#New boolean user can set to fix layer size constant in time.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sl</span><span class="p">,</span> <span class="s1">&#39;hold&#39;</span><span class="p">):</span>
+        <span class="n">sl</span><span class="o">.</span><span class="n">hold</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1">#Add on extra required parameters</span>
 <span class="n">required_params</span> <span class="o">=</span> <span class="n">leeds_thermal</span><span class="o">.</span><span class="n">required_params</span>
@@ -207,9 +211,10 @@
 
 <span class="n">optional_params</span> <span class="o">=</span> <span class="n">leeds_thermal</span><span class="o">.</span><span class="n">optional_params</span>
 
-
-<span class="c1">#!# evolve method to account for FeS layer that is thermally conducting</span>
-<div class="viewcode-block" id="evolve"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS.main.html#thermal_history.thermal_history.stable_layer_models.FeS.main.evolve">[docs]</a><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="c1">#!# indicates where method has changed from leeds_thermal</span>
+<span class="c1">#*# indicates where method has changed from conducting FeS model.</span>
+<span class="c1">#*# evolve method to account for FeS layer that is convecting</span>
+<div class="viewcode-block" id="evolve"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.evolve">[docs]</a><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Evolve the stable layer, taking into account the presence of a liquid FeS layer.</span>
 <span class="sd">    Changes from leeds_thermal.main.evolve are commented by #!#</span>
 
@@ -234,7 +239,6 @@
 
     <span class="c1">#Check if conditions are sub-adiabatic and a layer should begin to grow</span>
     <span class="n">check</span>  <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">pure_thermal_check</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">check</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1">#!# Always a least an FeS layer.</span>
 
     <span class="c1">#Initialise energies/entropies associated with this state.</span>
     <span class="n">Qs</span><span class="p">,</span> <span class="n">Es</span><span class="p">,</span> <span class="n">Ek</span><span class="p">,</span> <span class="n">Ej</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
@@ -247,18 +251,26 @@
     <span class="n">sl</span><span class="o">.</span><span class="n">baro_grad</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1">#Run the method.</span>
+
     <span class="n">r_initial</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
     <span class="n">T_initial</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
     <span class="n">dr</span> <span class="o">=</span> <span class="n">r_initial</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r_initial</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="c1">#Calculate Ek</span>
-    <span class="k">if</span> <span class="n">dr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#Layer is still of 0 thickness</span>
-        <span class="n">Ek</span> <span class="o">==</span> <span class="mi">0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">dT_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">T_initial</span><span class="p">,</span> <span class="n">dr</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r_initial</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">])</span>
-        <span class="n">Ek</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">r_initial</span><span class="p">,</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">dT_dr</span><span class="o">/</span><span class="n">T_initial</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">r_initial</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#*# FeS profiles</span>
+    <span class="n">FeS_prof</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">]</span>
+    <span class="n">Bulk_prof</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">]</span>
 
+    <span class="c1">#Calculate Ek</span>
+    <span class="c1">#*# FeS layer contribution. Doesn&#39;t have even grid spacing across bulk+FeS layer.</span>
+    <span class="n">dT_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">FeS_prof</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="n">FeS_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Ek</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">FeS_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_conductivity</span> <span class="o">*</span> <span class="p">(</span><span class="n">dT_dr</span><span class="o">/</span><span class="n">FeS_prof</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">FeS_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">core</span><span class="o">.</span><span class="n">rs</span> <span class="o">&lt;</span> <span class="n">r_fes</span><span class="p">:</span>
+        <span class="c1">#*# Contribution from stratified bulk</span>
+        <span class="n">dT_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">Bulk_prof</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="n">Bulk_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">Bulk_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">])</span>
+        <span class="n">Ek</span>   <span class="o">+=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">Bulk_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">dT_dr</span><span class="o">/</span><span class="n">Bulk_prof</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Bulk_prof</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
     <span class="c1">#Time step model</span>
     <span class="n">conducting_FeS</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>  <span class="c1">#!# Changed to our new method</span>
 
@@ -296,7 +308,7 @@
 
     <span class="n">dT_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
     
-    <span class="n">cp</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">])</span> <span class="c1">#!# Just consider values below FeS</span>
+    <span class="n">cp</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">])</span>
     <span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">])</span> 
     <span class="n">Qs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dT_dt</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">Es</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r1</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dT_dt</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">T1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">T1</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -340,7 +352,7 @@
 
 
 <span class="c1">#!# Thermal method with FeS</span>
-<div class="viewcode-block" id="conducting_FeS"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS.main.html#thermal_history.thermal_history.stable_layer_models.FeS.main.conducting_FeS">[docs]</a><span class="k">def</span> <span class="nf">conducting_FeS</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="conducting_FeS"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.conducting_FeS">[docs]</a><span class="k">def</span> <span class="nf">conducting_FeS</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Simple model taking the temperature of the FeS layer to be uniform.</span>
 
 <span class="sd">    Parameters</span>
@@ -391,37 +403,53 @@
     <span class="n">r_prof_fes</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
     <span class="n">T_prof_fes</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
 
-    <span class="c1">#!# Temp in the FeS layer. </span>
+    <span class="c1">#!# Temp in the Bulk. </span>
     <span class="c1">#!# Tracking profiles specific to FeS layer helps make sure Q_fes can be calculated</span>
     <span class="n">r_prof_bulk</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
     <span class="n">T_prof_bulk</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
         
+    <span class="c1">#*# FeS evolution</span>
+    <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">layer_thickness</span> <span class="o">&gt;</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_size</span><span class="p">:</span>
+        <span class="n">core</span><span class="o">.</span><span class="n">Q_fes</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">r_fes</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">][</span><span class="n">fes_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="p">(</span><span class="n">T_prof_bulk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">T_prof_bulk</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r_prof_bulk</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
 
-    <span class="n">core</span><span class="o">.</span><span class="n">Q_fes</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">r_fes</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_conductivity</span> <span class="o">*</span> <span class="o">-</span><span class="p">(</span><span class="n">T_prof_fes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">T_prof_fes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">r_prof_fes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r_prof_fes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">Qs_fes</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">Q_cmb</span><span class="o">-</span><span class="n">core</span><span class="o">.</span><span class="n">Q_fes</span>
 
+        <span class="n">dT_dt_fes</span> <span class="o">=</span> <span class="n">Qs_fes</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">r_prof_fes</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_density</span> <span class="o">*</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_cp</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_prof_fes</span><span class="o">/</span><span class="n">T_prof_fes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">r_prof_fes</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">dT_dt_fes</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">dT_dt</span><span class="o">*</span><span class="p">(</span><span class="n">T_prof_fes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span><span class="p">)</span>
 
     <span class="c1">#!# ADR defined at r_fes rather than r_cmb</span>
     <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">Q_fes</span><span class="o">/</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;Qa&#39;</span><span class="p">][</span><span class="n">core</span><span class="o">.</span><span class="n">_fes_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">ADR_s</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="c1">#Overwrite old value form core model (FeS core model always gives=1)</span>
 
     <span class="c1">#For stability, reduce the time step size when layer is relatively thin.</span>
     <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">time_gone</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">time_gone</span> <span class="o">&lt;</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
 
-        <span class="c1">#!# Only solve for FeS layer unless ADR&lt;1</span>
-        <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">rs</span>
 
+        <span class="c1">#*# New boolean, hold layer thickness constant</span>
+        <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">hold</span> <span class="ow">and</span> <span class="n">sl</span><span class="o">.</span><span class="n">layer_thickness</span> <span class="o">==</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_size</span><span class="p">:</span>
+            <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+            <span class="n">time_gone</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">r_fes</span><span class="p">,</span> <span class="n">r_fes</span><span class="p">])</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span> <span class="o">+</span> <span class="n">dTa_dt</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span><span class="p">)</span>
+
+        <span class="c1">#!# Only solve for bulk if ADR&lt;1</span>
+        <span class="k">elif</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
             
             <span class="c1">#!# Number of grid points in the bulk this iteration</span>
             <span class="n">n_points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">min_res</span><span class="p">,</span><span class="n">layer_thickness</span><span class="o">*</span><span class="n">resolution</span><span class="p">]))</span>
             <span class="n">n_points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">max_res</span><span class="p">,</span><span class="n">n_points</span><span class="p">]))</span>
 
-            <span class="c1">#Initialise layer with minium tolerance thickness</span>
+            <span class="c1">#Initialise layer with minimum tolerance thickness</span>
             <span class="k">if</span> <span class="n">layer_thickness</span> <span class="o">&lt;</span> <span class="n">TOL</span><span class="o">+</span><span class="n">prm</span><span class="o">.</span><span class="n">FeS_size</span><span class="p">:</span>       <span class="c1">#!# stable layer must start below FeS layer</span>
                 <span class="n">layer_thickness</span> <span class="o">=</span> <span class="n">init_size</span>
                 <span class="n">r_s</span> <span class="o">=</span> <span class="n">r_cmb</span> <span class="o">-</span> <span class="n">layer_thickness</span>
                 
-
                 <span class="n">r_prof_bulk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">r_s</span><span class="p">,</span> <span class="n">r_fes</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span> <span class="c1">#!# only upto to grid space of r_fes. FeS profiles will get appended to these profiles.</span>
                 <span class="n">T_prof_bulk</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
                 <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r_prof_bulk</span>
@@ -436,155 +464,151 @@
             <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">r_prof_fes</span><span class="p">)</span>
             <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_prof_bulk</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">T_prof_fes</span><span class="p">)</span>
 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1">#!# Just the FeS layer is conducting</span>
-            <span class="n">r</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">r_prof_fes</span><span class="p">,</span> <span class="n">T_prof_fes</span>
+            <span class="c1">#*# Radial profiles actually only include bulk with convecting FeS (no need to calculate diffusion in FeS)</span>
+            <span class="n">r</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">T_prof_bulk</span>
 
-        <span class="c1">#Set timestep</span>
-        <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">factor</span>
+            <span class="c1">#Set timestep</span>
+            <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">factor</span>
 
-        <span class="k">if</span> <span class="n">time_gone</span> <span class="o">+</span> <span class="n">dt_small</span> <span class="o">&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
-            <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span> <span class="o">-</span> <span class="n">time_gone</span>
+            <span class="k">if</span> <span class="n">time_gone</span> <span class="o">+</span> <span class="n">dt_small</span> <span class="o">&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
+                <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span> <span class="o">-</span> <span class="n">time_gone</span>
 
-        <span class="c1">#Regrid core radial profiles onto finer stable layer grid</span>
-        <span class="n">rho</span>   <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho_poly</span><span class="p">)</span>
-        <span class="n">k</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">])</span>
-        <span class="n">dk_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">cp</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">])</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">])</span>
+            <span class="c1">#Regrid core radial profiles onto finer stable layer grid. #*# Just interpolate onto bulk profiles to avoid FeS values.</span>
+            <span class="n">rho</span>   <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho_poly</span><span class="p">)</span>
+            <span class="n">k</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">])</span>
+            <span class="n">dk_dr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">cp</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">])</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">],</span> <span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">][:</span><span class="n">fes_idx</span><span class="p">])</span>
 
-        <span class="c1"># Thermal diffusivity</span>
-        <span class="n">D_T</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span>
+            <span class="c1"># Thermal diffusivity</span>
+            <span class="n">D_T</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span>
 
-        <span class="c1">#Cool adiabat</span>
-        <span class="n">Tcen</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span> <span class="o">+</span> <span class="n">dTa_dt</span><span class="o">*</span><span class="p">(</span><span class="n">time_gone</span><span class="o">+</span><span class="n">dt_small</span><span class="p">)</span>
+            <span class="c1">#Cool adiabat</span>
+            <span class="n">Tcen</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span> <span class="o">+</span> <span class="n">dTa_dt</span><span class="o">*</span><span class="p">(</span><span class="n">time_gone</span><span class="o">+</span><span class="n">dt_small</span><span class="p">)</span>
 
-        <span class="n">Ta</span><span class="p">,</span> <span class="n">Ta_grad</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">),</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat_grad</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
+            <span class="n">Ta</span><span class="p">,</span> <span class="n">Ta_grad</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">),</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat_grad</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
 
-        <span class="c1">#!# Fixed value if bulk is convecting</span>
-        <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">lb</span> <span class="o">=</span> <span class="n">Ta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">lb_type</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1">#Lower boundary condition (using entrainment)</span>
-            <span class="n">lb</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">E_T</span><span class="p">)</span><span class="o">*</span><span class="n">Ta_grad</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="c1"># lb = prof.adiabat_grad(r, core.Tcen, core_adiabat)[0]</span>
-            <span class="n">lb_type</span> <span class="o">=</span> <span class="mi">1</span>
-
-        <span class="c1">#If whole core is stratified, lower BC should be zero flux</span>
-        <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">lb</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="c1">#Upper bc based on Q_cmb</span>
-        <span class="n">ub_type</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">T_grad_cmb</span>
-
-        <span class="c1">#Calculate diffusion solution</span>
-        <span class="c1">#!# Check if standard diffusion solution is needed or new method with discontinuity in k</span>
-        <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">r_fes</span><span class="p">:</span>
-            <span class="c1">#Just FeS layer. diffusion_uneven() gives same results as diffusion() from leeds_thermal if</span>
-            <span class="c1">#uniform grid is used. Can support an uneven grid spacing if needed.</span>
-            <span class="n">T_new</span> <span class="o">=</span> <span class="n">diffusion_uneven</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dt_small</span><span class="p">,</span> <span class="n">D_T</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dk_dr</span><span class="p">,</span> <span class="p">(</span><span class="n">lb_type</span><span class="p">,</span><span class="n">lb</span><span class="p">),(</span><span class="n">ub_type</span><span class="p">,</span> <span class="n">ub</span><span class="p">))</span> <span class="c1">#!# Uneven grid.</span>
-        <span class="k">else</span><span class="p">:</span>
-
-            <span class="c1">#!# For diffusion solution with a discontinuity, constant material properties in each</span>
-            <span class="c1">#!# region are assumed for now.</span>
-
-            <span class="c1">#Check values are constant</span>
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rho</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span> <span class="n">k</span><span class="p">]:</span>
-                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">])))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s1">&#39;Diffusion solution with discontinuity in k assumes rho, cp, k are constant in radius in bulk&#39;</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">r</span><span class="o">&gt;</span><span class="n">r_fes</span><span class="p">])))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s1">&#39;Diffusion solution with discontinuity in k assumes rho, cp, k are constant in radius in FeS&#39;</span><span class="p">)</span>
-
-            <span class="c1">#!# Thermal diffusivity</span>
-            <span class="n">D_lower</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">cp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">D_upper</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">cp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-            <span class="n">k_lower</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">k_upper</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-            <span class="c1">#!# Diffusion solution for a discontinuity in k.</span>
-            <span class="n">T_new</span> <span class="o">=</span> <span class="n">diffusion_discont</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">r_fes</span><span class="p">,</span> <span class="n">dt_small</span><span class="p">,</span> <span class="n">D_lower</span><span class="p">,</span> <span class="n">D_upper</span><span class="p">,</span> <span class="n">k_lower</span><span class="p">,</span> <span class="n">k_upper</span><span class="p">,</span> <span class="p">(</span><span class="n">lb_type</span><span class="p">,</span> <span class="n">lb</span><span class="p">),</span> <span class="p">(</span><span class="n">ub_type</span><span class="p">,</span> <span class="n">ub</span><span class="p">))</span>
-
-
-        <span class="c1">#!# Only need to change layer thickness if stable layer will grow/receed.</span>
-        <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">layer_thickness</span> <span class="o">&gt;</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_size</span><span class="p">:</span>
-            <span class="c1">#Mix layer (experimental function, not used by default)</span>
-            <span class="k">if</span> <span class="n">prm</span><span class="o">.</span><span class="n">mix_layer</span><span class="p">:</span>
-                <span class="n">T_rel</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">mix_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cp</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">T_new</span><span class="o">-</span><span class="n">Ta</span><span class="p">)</span>
-                <span class="n">T_new</span> <span class="o">=</span> <span class="n">T_rel</span> <span class="o">+</span> <span class="n">Ta</span>
-
-            <span class="c1">#Determine if layer should retreat</span>
-            <span class="c1">#!# Just consider areas below FeS layer</span>
-            <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">retreat_layer</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">T_new</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">size</span><span class="p">)[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">Tcen</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">,</span> <span class="p">(</span><span class="n">resolution</span><span class="p">,</span><span class="n">min_res</span><span class="p">,</span><span class="n">max_res</span><span class="p">),</span> <span class="n">alpha</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-
-            <span class="c1">#while core is stratified</span>
-            <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">r_s_new</span> <span class="o">=</span> <span class="mi">0</span>
-
-            <span class="c1">#Grow layer</span>
-            <span class="k">elif</span> <span class="n">r_s_new</span> <span class="o">==</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-
-                <span class="c1">#Find radius on adiabat that matches temperature at base of layer</span>
-                <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Tcen</span><span class="p">):</span>
-                    <span class="k">return</span> <span class="n">T</span> <span class="o">-</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span><span class="n">Tcen</span><span class="p">,</span><span class="n">core_adiabat</span><span class="p">)</span>
-                
-                <span class="k">if</span> <span class="n">T_new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Tcen</span><span class="p">:</span> <span class="c1">#Layer has reached center of core</span>
-                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1">#!# Limit search to 0 -&gt; r_fes</span>
-                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">r_fes</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">T_new</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Tcen</span><span class="p">),</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> 
-
-            <span class="c1">#Shrink layer</span>
+            
+            <span class="c1">#!# Fixed value if bulk is convecting</span>
+            <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">lb</span> <span class="o">=</span> <span class="n">Ta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">lb_type</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c1">#Give up if layer will still not grow after generous time step increases.</span>
-                <span class="k">if</span> <span class="n">r_s_new</span> <span class="o">&gt;=</span> <span class="n">r_fes</span><span class="o">-</span><span class="n">TOL</span><span class="p">:</span>     <span class="c1">#!# replaced r_cmb with r_fes</span>
+                <span class="c1">#Lower boundary condition (using entrainment)</span>
+                <span class="n">lb</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">E_T</span><span class="p">)</span><span class="o">*</span><span class="n">Ta_grad</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># lb = prof.adiabat_grad(r, core.Tcen, core_adiabat)[0]</span>
+                <span class="n">lb_type</span> <span class="o">=</span> <span class="mi">1</span>
 
-                    <span class="c1">#No stratification</span>
-                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">r_fes</span>        <span class="c1">#!# replaced r_cmb with r_fes</span>
-                    <span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span><span class="o">*</span><span class="mi">2</span>      
-                    <span class="n">time_gone</span> <span class="o">=-</span> <span class="n">dt_small</span>  <span class="c1">#¡# Reset timer back to start</span>
+            <span class="c1">#If whole core is stratified, lower BC should be zero flux</span>
+            <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">lb</span> <span class="o">=</span> <span class="mi">0</span>
 
-                    <span class="k">if</span> <span class="n">factor</span> <span class="o">&gt;</span> <span class="mi">64</span> <span class="ow">or</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-                        <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span> <span class="o">-</span> <span class="n">time_gone</span>
-                        <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span>
-
-            <span class="c1">#Ensure stable layer doesn&#39;t go below ICB</span>
-            <span class="n">ri_new</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">ri</span> <span class="o">+</span> <span class="n">core</span><span class="o">.</span><span class="n">dri_dt</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
-            <span class="k">if</span> <span class="n">r_s_new</span> <span class="o">&lt;</span> <span class="n">ri_new</span><span class="p">:</span>
-                <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">ri_new</span><span class="o">+</span><span class="mf">10e3</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">])</span> <span class="c1">#At least 10km above ICB.</span>
-
-            <span class="n">layer_thickness</span> <span class="o">=</span> <span class="n">r_cmb</span> <span class="o">-</span> <span class="n">r_s_new</span>
-
-            <span class="c1">#Regrid domain, keeping temperature relative to the adiabat.</span>
-            <span class="n">T_rel</span> <span class="o">=</span> <span class="n">T_new</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">]</span> <span class="o">-</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
-
-            <span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">T_rel</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">change_domain_size</span><span class="p">(</span><span class="n">T_rel</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">r_s_new</span><span class="p">,</span> <span class="p">(</span><span class="n">resolution</span><span class="p">,</span><span class="n">min_res</span><span class="p">,</span><span class="n">max_res</span><span class="p">))</span>
-
-            <span class="n">T_prof_bulk</span> <span class="o">=</span> <span class="n">T_rel</span> <span class="o">+</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
+            <span class="c1">#*# Hold FeS layer temperature by stopping it from cooling just on the iteration a layer tries to grow.</span>
+            <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">layer_thickness</span> <span class="o">==</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_size</span><span class="p">:</span>
+                <span class="n">dT_dt_fes</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-            <span class="n">r</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">r_prof_fes</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_prof_bulk</span><span class="p">,</span> <span class="n">T_new</span><span class="p">[</span><span class="n">r</span><span class="o">&gt;=</span><span class="n">r_fes</span><span class="p">])</span>
+            <span class="c1">#*# Upper bc based on FeS cooling rate</span>
+            <span class="n">ub_type</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">T_prof_fes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dT_dt_fes</span><span class="o">*</span><span class="p">(</span><span class="n">time_gone</span><span class="o">+</span><span class="n">dt_small</span><span class="p">)</span>
 
+            <span class="c1">#Calculate diffusion solution</span>
+
+            <span class="c1">#*# Just the bulk. diffusion_uneven() gives same results as diffusion() from leeds_thermal if</span>
+            <span class="c1">#uniform grid is used. Can support an uneven grid spacing if needed.</span>
+            <span class="n">T_new</span> <span class="o">=</span> <span class="n">diffusion_uneven</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dt_small</span><span class="p">,</span> <span class="n">D_T</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dk_dr</span><span class="p">,</span> <span class="p">(</span><span class="n">lb_type</span><span class="p">,</span><span class="n">lb</span><span class="p">),(</span><span class="n">ub_type</span><span class="p">,</span> <span class="n">ub</span><span class="p">))</span>
+
+
+            <span class="c1">#!# Only need to change layer thickness if stable layer will grow/receed.</span>
+            <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">layer_thickness</span> <span class="o">&gt;</span> <span class="n">prm</span><span class="o">.</span><span class="n">FeS_size</span><span class="p">:</span>
+                <span class="c1">#Mix layer (experimental function, not used by default)</span>
+                <span class="k">if</span> <span class="n">prm</span><span class="o">.</span><span class="n">mix_layer</span><span class="p">:</span>
+                    <span class="n">T_rel</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">mix_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cp</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">T_new</span><span class="o">-</span><span class="n">Ta</span><span class="p">)</span>
+                    <span class="n">T_new</span> <span class="o">=</span> <span class="n">T_rel</span> <span class="o">+</span> <span class="n">Ta</span>
+
+                <span class="c1">#Determine if layer should retreat</span>
+                <span class="c1">#!# Just consider areas below FeS layer</span>
+
+                <span class="c1">#*# New boolean model.stable_layer.hold allows layer size to be fixed manually.</span>
+                <span class="k">if</span> <span class="n">sl</span><span class="o">.</span><span class="n">hold</span><span class="p">:</span>
+                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">retreat_layer</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">T_new</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">size</span><span class="p">)[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">Tcen</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">,</span> <span class="p">(</span><span class="n">resolution</span><span class="p">,</span><span class="n">min_res</span><span class="p">,</span><span class="n">max_res</span><span class="p">),</span> <span class="n">alpha</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;</span><span class="n">r_fes</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+                <span class="c1">#while core is stratified</span>
+                <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="mi">0</span>
+
+                <span class="c1">#Grow layer</span>
+                <span class="k">elif</span> <span class="n">r_s_new</span> <span class="o">==</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+                    <span class="c1">#Find radius on adiabat that matches temperature at base of layer</span>
+                    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Tcen</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="n">T</span> <span class="o">-</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span><span class="n">Tcen</span><span class="p">,</span><span class="n">core_adiabat</span><span class="p">)</span>
+                    
+                    <span class="k">if</span> <span class="n">T_new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Tcen</span><span class="p">:</span> <span class="c1">#Layer has reached center of core</span>
+                        <span class="n">r_s_new</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1">#!# Limit search to 0 -&gt; r_fes</span>
+                        <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">r_fes</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">T_new</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Tcen</span><span class="p">),</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> 
+
+                <span class="c1">#Shrink layer</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1">#Give up if layer will still not grow after generous time step increases.</span>
+                    <span class="k">if</span> <span class="n">r_s_new</span> <span class="o">&gt;=</span> <span class="n">r_fes</span><span class="o">-</span><span class="n">TOL</span><span class="p">:</span>     <span class="c1">#!# replaced r_cmb with r_fes</span>
+
+                        <span class="c1">#No stratification</span>
+                        <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">r_fes</span>        <span class="c1">#!# replaced r_cmb with r_fes</span>
+                        <span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span><span class="o">*</span><span class="mi">2</span>      
+                        <span class="n">time_gone</span> <span class="o">=-</span> <span class="n">dt_small</span>  <span class="c1">#¡# Reset timer back to start</span>
+
+                        <span class="k">if</span> <span class="n">factor</span> <span class="o">&gt;</span> <span class="mi">64</span> <span class="ow">or</span> <span class="n">sl</span><span class="o">.</span><span class="n">ADR</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">dt_small</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span> <span class="o">-</span> <span class="n">time_gone</span>
+                            <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span>
+
+                <span class="c1">#Ensure stable layer doesn&#39;t go below ICB</span>
+                <span class="n">ri_new</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">ri</span> <span class="o">+</span> <span class="n">core</span><span class="o">.</span><span class="n">dri_dt</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
+                <span class="k">if</span> <span class="n">r_s_new</span> <span class="o">&lt;</span> <span class="n">ri_new</span><span class="p">:</span>
+                    <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">ri_new</span><span class="o">+</span><span class="mf">10e3</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="p">])</span> <span class="c1">#At least 10km above ICB.</span>
+
+                <span class="n">layer_thickness</span> <span class="o">=</span> <span class="n">r_cmb</span> <span class="o">-</span> <span class="n">r_s_new</span>
+
+                <span class="c1">#Regrid domain, keeping temperature relative to the adiabat.</span>
+                <span class="n">T_rel</span> <span class="o">=</span> <span class="n">T_new</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">r_fes</span><span class="p">]</span> <span class="o">-</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
+
+                <span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">T_rel</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">change_domain_size</span><span class="p">(</span><span class="n">T_rel</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">r_fes</span><span class="p">],</span> <span class="n">r_s_new</span><span class="p">,</span> <span class="p">(</span><span class="n">resolution</span><span class="p">,</span><span class="n">min_res</span><span class="p">,</span><span class="n">max_res</span><span class="p">))</span>
+
+                <span class="n">T_prof_bulk</span> <span class="o">=</span> <span class="n">T_rel</span> <span class="o">+</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">Tcen</span><span class="p">,</span> <span class="n">core_adiabat</span><span class="p">)</span>
+
+
+                <span class="c1"># r, T = np.append(r_prof_bulk, r_prof_fes), np.append(T_prof_bulk, T_new[r&gt;=r_fes])</span>
+                <span class="n">r</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">T_prof_bulk</span> <span class="c1">#*#</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">r_fes</span>
+                <span class="n">T</span> <span class="o">=</span> <span class="n">T_new</span>
+
+            <span class="n">time_gone</span> <span class="o">+=</span> <span class="n">dt_small</span>
+    
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">r_s_new</span> <span class="o">=</span> <span class="n">r_fes</span>
-            <span class="n">T</span> <span class="o">=</span> <span class="n">T_new</span>
-
-        <span class="n">time_gone</span> <span class="o">+=</span> <span class="n">dt_small</span>
-  
-
-
-    <span class="c1">#Save new profiles. Keep original profiles until update() has been called.</span>
-    <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
-    <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span>
+            <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+            <span class="n">time_gone</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">r_fes</span><span class="p">,</span> <span class="n">r_fes</span><span class="p">])</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">adiabat</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Tcen</span> <span class="o">+</span> <span class="n">dTa_dt</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_adiabat_params</span><span class="p">)</span>
 
     <span class="c1">#!# Save separate bulk and FeS profiles.</span>
-    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[:</span><span class="o">-</span><span class="n">r_prof_fes</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
-    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[:</span><span class="o">-</span><span class="n">r_prof_fes</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span> <span class="c1">#*#</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;bulk&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="c1">#*#</span>
 
-    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">r_prof_fes</span><span class="o">.</span><span class="n">size</span><span class="p">:]</span>
-    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="n">r_prof_fes</span><span class="o">.</span><span class="n">size</span><span class="p">:]</span>
+    <span class="c1">#*# FeS profiles just need their adiabat cooling</span>
+    <span class="c1"># sl.profiles[&#39;fes&#39;][&#39;r&#39;] = r[-r_prof_fes.size:]</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dT_dt_fes</span><span class="o">*</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
+
+    <span class="c1">#Save new profiles. Keep original profiles until update() has been called.</span>
+    <span class="c1"># sl._next_profiles[&#39;r&#39;] = r</span>
+    <span class="c1"># sl._next_profiles[&#39;T&#39;] = T</span>
+    <span class="c1">#*#</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_prof_bulk</span><span class="p">,</span> <span class="n">r_prof_fes</span><span class="p">)</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">_next_profiles</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_prof_bulk</span><span class="p">,</span> <span class="n">sl</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;fes&#39;</span><span class="p">][</span><span class="s1">&#39;T&#39;</span><span class="p">])</span>
 
     <span class="n">sl</span><span class="o">.</span><span class="n">ds_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_s_new</span> <span class="o">-</span> <span class="n">r_s_original</span><span class="p">)</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">dt</span>
 
@@ -595,8 +619,6 @@
 
     <span class="n">sl</span><span class="o">.</span><span class="n">lb_T</span> <span class="o">=</span> <span class="n">lb</span>
     <span class="n">sl</span><span class="o">.</span><span class="n">ub_T</span> <span class="o">=</span> <span class="n">ub</span></div>
-
-
 
 
 </pre></div>
