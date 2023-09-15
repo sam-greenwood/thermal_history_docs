@@ -1,71 +1,35 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adding new methods &mdash; thermal_history  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API" href="API_index.html" />
     <link rel="prev" title="Running a simple example" href="simple_example.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> thermal_history
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,17 +37,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="README.html">Overview</a></li>
@@ -97,73 +51,35 @@
 <li class="toctree-l1"><a class="reference internal" href="API_index.html">API</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">thermal_history</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Adding new methods</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Adding new methods</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/Advanced.md.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <section class="tex2jax_ignore mathjax_ignore" id="adding-new-methods">
-<h1>Adding new methods<a class="headerlink" href="#adding-new-methods" title="Permalink to this heading">¶</a></h1>
+<h1>Adding new methods<a class="headerlink" href="#adding-new-methods" title="Permalink to this heading"></a></h1>
 <p>Whilst this code ships with certain methods for the 3 regions (core/stable layer/mantle), the user can add alternative ones that they develop. To do so is easy enough but needs to be done in a specific way to interface with the whole python package.</p>
 <section id="overview-of-the-package">
-<h2>1. Overview of the package<a class="headerlink" href="#overview-of-the-package" title="Permalink to this heading">¶</a></h2>
+<h2>1. Overview of the package<a class="headerlink" href="#overview-of-the-package" title="Permalink to this heading"></a></h2>
 <p>To start it makes sense to explain the overall structure of the python package, here is an abbrieviated overview:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thermal_history</span>
       <span class="o">|</span>
@@ -209,7 +125,7 @@
 <p>An additional file is present in the model folders: <code class="docutils literal notranslate"><span class="pre">_readme.md</span></code>. This will be explained in the documentation section below.</p>
 </section>
 <section id="required-format-for-main-py">
-<h2>2. Required format for main.py<a class="headerlink" href="#required-format-for-main-py" title="Permalink to this heading">¶</a></h2>
+<h2>2. Required format for main.py<a class="headerlink" href="#required-format-for-main-py" title="Permalink to this heading"></a></h2>
 <p>There are 3 functions expected to be defined in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. They are: <code class="docutils literal notranslate"><span class="pre">setup</span></code>, <code class="docutils literal notranslate"><span class="pre">evolve</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code>. All take a single argument (the ThermalModel class that is created by <code class="docutils literal notranslate"><span class="pre">setup_model()</span></code> is passed to them) and none of them return anything as they instead set the attributes of ThermalModel. There are also 2 dictionaries, <code class="docutils literal notranslate"><span class="pre">required_params</span></code> and <code class="docutils literal notranslate"><span class="pre">optional_params</span></code>, that must de defined within <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> in simple_test, starting with the top of the file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="c1">#Description of this model3</span>
@@ -294,7 +210,7 @@
 <p>These could just be set to empty dictionaries which may be useful while developing a model but once a model is finalised (and particularly if someone else is to use it) it is a good idea to make sure these are fully populated.</p>
 </section>
 <section id="documentation">
-<h2>3. Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<h2>3. Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
 <p>These instructions are aimed at anyone looking to have their changes to the thermal_history package reflected in the documentation.</p>
 <p>Documentation for this repo is handled by another Github repo: https://github.com/sam-greenwood/thermal_history_docs. See the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> to see how the docs are automatically built and published to Github pages.</p>
 <p>Whenever changes are made to the main thermal_history Github repo are made, this triggers the documentation repo to copy the latest version of the main repository, rebuild the documentation, and publish it to a Github pages site. Note the use of PAT tokens are required to give one repo permission to trigger a workflow once a workflow on another repo has run. Sphinx is used to build the documentation and its configuration file, templates, and any additional information such as the file containing these instructions can be found in <code class="docutils literal notranslate"><span class="pre">docs/</span></code>. A handy script <code class="docutils literal notranslate"><span class="pre">docs/create_docs.sh</span></code> is used to run the commands to build the docs and can be run locally and contains info on required packages to be installed to run. Sphinx automatically searches through the docstrings throughout the thermal_history package and builds the html files for the site. The <code class="docutils literal notranslate"><span class="pre">docs/_source/conf.py</span></code> file is setup to support the Numpy style docstrings for functions/classes.</p>
@@ -315,51 +231,33 @@
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="API_index.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="simple_example.html" class="btn btn-neutral float-left" title="Running a simple example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simple_example.html" class="btn btn-neutral float-left" title="Running a simple example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="API_index.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2022, Sam Greenwood
-
-    </p>
+    <p>&#169; Copyright 2022, Sam Greenwood.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

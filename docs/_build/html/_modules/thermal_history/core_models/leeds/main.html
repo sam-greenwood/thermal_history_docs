@@ -1,68 +1,32 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.core_models.leeds.main &mdash; thermal_history  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html" class="icon icon-home"> thermal_history
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -70,17 +34,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../README.html">Overview</a></li>
@@ -89,66 +43,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../API_index.html">API</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">thermal_history</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-        
-      <li>thermal_history.core_models.leeds.main</li>
-    
-    
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">thermal_history.core_models.leeds.main</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for thermal_history.core_models.leeds.main</h1><div class="highlight"><pre>
 <span></span><span class="c1">#Description of this model3</span>
 <span class="n">Description</span> <span class="o">=</span> <span class="s1">&#39;Core model based on Greenwood et al. (2021) with iron snow parameterisation of Davies and Pommier (2018).&#39;</span>
@@ -162,7 +80,9 @@
 <span class="kn">from</span> <span class="nn">.routines</span> <span class="kn">import</span> <span class="n">energy</span> <span class="k">as</span> <span class="n">en</span>
 <span class="kn">from</span> <span class="nn">.routines</span> <span class="kn">import</span> <span class="n">chemistry</span> <span class="k">as</span> <span class="n">chem</span>
 <span class="kn">from</span> <span class="nn">.routines</span> <span class="kn">import</span> <span class="n">snow</span> <span class="k">as</span> <span class="n">snow</span>
-
+<span class="kn">from</span> <span class="nn">.routines</span> <span class="kn">import</span> <span class="n">rivoldini_eos</span> <span class="k">as</span> <span class="n">eos</span>
+<span class="c1"># CD - changed this import of rivoldini_eos from </span>
+<span class="c1"># import rivoldini_eos as eos</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -171,7 +91,7 @@
 <span class="c1">#Required functions: setup(), evolution(), update()</span>
 
 <div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../../thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Sets initial conditions from the input parameters and performs any other housekeeping (e.g. ensuring correct temperature for a given ri)</span>
 
 <span class="sd">    Parameters</span>
@@ -244,7 +164,7 @@
 
 
 <div class="viewcode-block" id="evolve"><a class="viewcode-back" href="../../../../thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.evolve">[docs]</a><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Main evolution fuction for development method. Calculates rates of change for all aspects of core evolution.</span>
 
 <span class="sd">    Parameters</span>
@@ -447,7 +367,6 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
             <span class="n">i_flux</span> <span class="o">=</span> <span class="n">en</span><span class="o">.</span><span class="n">mass_flux</span><span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">:],</span> <span class="n">prm</span><span class="o">.</span><span class="n">alpha_c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha_D</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">prm</span><span class="o">.</span><span class="n">diffusivity_c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">g</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">:])</span>
             <span class="n">Ea</span> <span class="o">+=</span> <span class="n">en</span><span class="o">.</span><span class="n">mass_diffusion</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">:],</span> <span class="n">i_flux</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">:])</span>
-
     <span class="c1">#############################</span>
     <span class="n">core</span><span class="o">.</span><span class="n">alpha_D</span> <span class="o">=</span> <span class="n">alpha_D</span>
 
@@ -604,12 +523,25 @@
 
     <span class="n">core</span><span class="o">.</span><span class="n">dTm</span> <span class="o">=</span> <span class="n">Tm</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tm_fe</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">]</span>
     <span class="n">core</span><span class="o">.</span><span class="n">T_upper</span> <span class="o">=</span> <span class="n">Ta</span><span class="p">[</span><span class="n">rs_idx</span><span class="p">]</span>
-    <span class="n">core</span><span class="o">.</span><span class="n">L_ri</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">]</span></div>
+    <span class="n">core</span><span class="o">.</span><span class="n">L_ri</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">ri_idx</span><span class="p">]</span>
+    
+   
+<span class="c1"># check if at any depth conc_l is above eutectic or within stability field</span>
 
+    <span class="k">if</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;XX&#39;</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s2">&quot;conc_l&quot;</span><span class="p">],</span><span class="n">eos</span><span class="o">.</span><span class="n">pdFeC</span><span class="p">()</span><span class="o">.</span><span class="n">xg</span><span class="p">(</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">P</span><span class="p">))):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">critical_failure</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">critical_failure_reason</span> <span class="o">=</span> <span class="s1">&#39;Reached end of graphite stability field!&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;it: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">it</span><span class="si">}</span><span class="s1">. Reached end of graphite stability field!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s2">&quot;conc_l&quot;</span><span class="p">],</span><span class="n">eos</span><span class="o">.</span><span class="n">xeFeS</span><span class="p">(</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">P</span><span class="p">))):</span>        
+            <span class="n">model</span><span class="o">.</span><span class="n">critical_failure</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">critical_failure_reason</span> <span class="o">=</span> <span class="s1">&#39;Reached eutectic Fe-S eutectic!&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;it: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">it</span><span class="si">}</span><span class="s1">. Reached eutectic Fe-S eutectic!&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="update"><a class="viewcode-back" href="../../../../thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.update">[docs]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Updates parameters based on rates of change calculatied in main fuction.</span>
 
 <span class="sd">    Parameters</span>
@@ -720,7 +652,7 @@
 
 
 <div class="viewcode-block" id="progress"><a class="viewcode-back" href="../../../../thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.progress">[docs]</a><span class="k">def</span> <span class="nf">progress</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Return text for this class when progress at each iteration is printed to STDOUT</span>
 
 <span class="sd">    Returns</span>
@@ -738,6 +670,7 @@
 
     <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">iron_snow</span><span class="p">:</span>
         <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;    snow depth: </span><span class="si">{</span><span class="p">(</span><span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="o">-</span><span class="n">core</span><span class="o">.</span><span class="n">r_snow</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> km&#39;</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;    liquid le cen and cmb: (</span><span class="si">{</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s2">&quot;conc_l&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s2">&quot;conc_l&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">) wt%&#39;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;    ri: </span><span class="si">{</span><span class="n">core</span><span class="o">.</span><span class="n">ri</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> km&#39;</span>  
 
@@ -747,7 +680,7 @@
 
 
 <div class="viewcode-block" id="set_Q_rs"><a class="viewcode-back" href="../../../../thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.set_Q_rs">[docs]</a><span class="k">def</span> <span class="nf">set_Q_rs</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Sets the heat flow at the top of the convecting region (rs)</span>
 
 <span class="sd">    Parameters</span>
@@ -774,7 +707,7 @@
     <span class="k">return</span> <span class="n">Q_rs</span></div>
 
 <div class="viewcode-block" id="snow_evolution"><a class="viewcode-back" href="../../../../thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.snow_evolution">[docs]</a><span class="k">def</span> <span class="nf">snow_evolution</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Sub-evolution fuction specifically for an iron snow-zone based on Davies and Pommier (2018). Called from evolution() if required (prm.iron_snow=True)</span>
 
 <span class="sd">    Parameters</span>
@@ -919,42 +852,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2022, Sam Greenwood
-
-    </p>
+    <p>&#169; Copyright 2022, Sam Greenwood.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

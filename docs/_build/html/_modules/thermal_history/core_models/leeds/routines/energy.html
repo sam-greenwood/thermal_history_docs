@@ -1,68 +1,32 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.core_models.leeds.routines.energy &mdash; thermal_history  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
         <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+    <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../../index.html" class="icon icon-home"> thermal_history
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -70,17 +34,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../README.html">Overview</a></li>
@@ -89,66 +43,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../API_index.html">API</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../../index.html">thermal_history</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
-        
-      <li>thermal_history.core_models.leeds.routines.energy</li>
-    
-    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">thermal_history.core_models.leeds.routines.energy</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for thermal_history.core_models.leeds.routines.energy</h1><div class="highlight"><pre>
 <span></span><span class="c1">#Core model functions</span>
 <span class="kn">from</span> <span class="nn">thermal_history.utils.optimised_funcs</span> <span class="kn">import</span> <span class="n">trapezoid</span>
@@ -161,7 +79,7 @@
 <span class="c1">#Latent Heat</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="latent_heat"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.latent_heat">[docs]</a><span class="k">def</span> <span class="nf">latent_heat</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">idx</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Latent heat of fusion during IC growth</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Latent heat of fusion during IC growth</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -197,7 +115,7 @@
 <span class="c1">#Gravitational Energy</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="gravitational"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.gravitational">[docs]</a><span class="k">def</span> <span class="nf">gravitational</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">Cc</span><span class="p">,</span> <span class="n">M_oc</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rs_idx</span><span class="p">,</span> <span class="n">Tcmb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Gravitational energy associated with growth of IC</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Gravitational energy associated with growth of IC</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -245,7 +163,7 @@
 <span class="c1">#Gravitational Energy for Magnesium precipitation from Du et al. 2017</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="gravitational_precip"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.gravitational_precip">[docs]</a><span class="k">def</span> <span class="nf">gravitational_precip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">Cm</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Gravitational energy associated with precipitation</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Gravitational energy associated with precipitation</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -282,7 +200,7 @@
 <span class="c1">#Secular cooling</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="secular_cool"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.secular_cool">[docs]</a><span class="k">def</span> <span class="nf">secular_cool</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">cp</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span> <span class="n">Tcmb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Energy from change in sensible energy from secular cooling</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Energy from change in sensible energy from secular cooling</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -324,7 +242,7 @@
 <span class="c1">#Radiogenic heating</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="radiogenic_heating"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.radiogenic_heating">[docs]</a><span class="k">def</span> <span class="nf">radiogenic_heating</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">Mass</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">decay_time</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Heat from radiogenic heating (NOT TESTED)</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Heat from radiogenic heating (NOT TESTED)</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -359,7 +277,7 @@
 <span class="c1">#Entropy of conduction</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="cond_entropy"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.cond_entropy">[docs]</a><span class="k">def</span> <span class="nf">cond_entropy</span><span class="p">(</span><span class="n">Ta</span><span class="p">,</span><span class="n">Ta_grad</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">idx</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Entropy of thermal conduction in adiabatic region</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Entropy of thermal conduction in adiabatic region</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -387,7 +305,7 @@
 <span class="c1">#Entropy of mixing</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="heat_of_reaction"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.heat_of_reaction">[docs]</a><span class="k">def</span> <span class="nf">heat_of_reaction</span><span class="p">(</span><span class="n">rho_oc</span><span class="p">,</span><span class="n">dmu_dt_poly</span><span class="p">,</span><span class="n">Cc</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">r_oc</span><span class="p">,</span><span class="n">mm</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Entropy of heat of reaction at ICB (NOT TESTED IN A WHILE)</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Entropy of heat of reaction at ICB (NOT TESTED IN A WHILE)</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -422,7 +340,7 @@
 <span class="c1">#Entropy of mass diffusion</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="mass_diffusion"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.mass_diffusion">[docs]</a><span class="k">def</span> <span class="nf">mass_diffusion</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Entropy from barodiffusion of light elements</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Entropy from barodiffusion of light elements</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -454,7 +372,7 @@
 <span class="c1">#Mass flux</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="mass_flux"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.mass_flux">[docs]</a><span class="k">def</span> <span class="nf">mass_flux</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">c_grad</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Mass flux from diffusion down chemical and pressure gradients</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Mass flux from diffusion down chemical and pressure gradients</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -483,7 +401,7 @@
 <span class="c1">#Numerical integration</span>
 <span class="c1">###############################################################################</span>
 <div class="viewcode-block" id="integrate"><a class="viewcode-back" href="../../../../../thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.integrate">[docs]</a><span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Depreciated in favour of thermal_history.utils.optimised_funcs.trapezoid</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">cumulative</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -494,42 +412,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2022, Sam Greenwood
-
-    </p>
+    <p>&#169; Copyright 2022, Sam Greenwood.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
