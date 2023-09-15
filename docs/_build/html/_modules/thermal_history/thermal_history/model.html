@@ -120,7 +120,7 @@
     <span class="n">methods</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;core&#39;</span><span class="p">:</span>         <span class="n">core_method</span><span class="p">,</span>
                <span class="s1">&#39;stable_layer&#39;</span><span class="p">:</span> <span class="n">stable_layer_method</span><span class="p">,</span>
                <span class="s1">&#39;mantle&#39;</span><span class="p">:</span>       <span class="n">mantle_method</span><span class="p">}</span>
-
+    
     <span class="c1">#Check which regions should be modelled have been specified</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">methods</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">r</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;parameters has no attribute </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">. Set to True or False&quot;</span>
@@ -176,6 +176,10 @@
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">optional_params</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">parameters</span><span class="o">.</span><span class="n">core_method_name</span> <span class="o">=</span> <span class="n">core_method</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">sl_method_name</span>   <span class="o">=</span> <span class="n">stable_layer_method</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">mantle_method_name</span> <span class="o">=</span> <span class="n">mantle_method</span>
 
     <span class="k">return</span> <span class="n">ThermalModel</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">methods</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="n">log_file</span><span class="p">)</span></div>
 
@@ -236,7 +240,7 @@
                     <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1">#An exisiting parameters class has been provided</span>
+            <span class="c1">#An existing parameters class has been provided</span>
             <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">parameters</span><span class="p">]</span>
 
 
