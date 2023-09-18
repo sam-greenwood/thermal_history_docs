@@ -142,7 +142,20 @@
     <span class="c1">#Can add more conditional statements to consider more parameterisations in the furture.</span>
 
     <span class="c1">#Alfe 2002 method</span>
+    <span class="k">if</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;XX&#39;</span><span class="p">:</span>
+        <span class="c1"># melting T of Fe-C above eutectic based on Fei and Brosh 2014       </span>
+        <span class="c1">#Simple partitioning</span>
+        <span class="c1">#exec(melting_params[2])       </span>
+        <span class="n">FeC</span><span class="o">=</span><span class="n">melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">core</span><span class="o">.</span><span class="n">conc_s</span> <span class="o">=</span> <span class="mf">1.</span> <span class="c1">#C pure graphite</span>
+        <span class="n">Tm</span><span class="o">=</span><span class="n">FeC</span><span class="o">.</span><span class="n">Tm</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">])</span>
+        <span class="n">Tm_fe</span><span class="o">=</span><span class="n">FeC</span><span class="o">.</span><span class="n">Tm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">])</span> <span class="c1"># don not know why this is useful</span>
+        <span class="n">dTm_dP</span><span class="o">=</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">FeC</span><span class="o">.</span><span class="n">dTmdp</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">core</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">Tm_fe</span><span class="p">,</span><span class="n">Tm</span><span class="p">,</span><span class="n">dTm_dP</span>
+        
     <span class="k">if</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;AL&#39;</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        
         <span class="k">if</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;AL&#39;</span><span class="p">:</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span> <span class="c1">#Don&#39;t pass through first string</span>
         <span class="k">else</span><span class="p">:</span>
@@ -232,7 +245,7 @@
         
         <span class="n">dTm</span> <span class="o">=</span> <span class="n">Tm</span> <span class="o">-</span> <span class="n">Tm_fe</span>
 
-
+        
     <span class="k">else</span><span class="p">:</span>
 
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Incorrect string denoting which melting parameterisation to use. See this function (core_models.leeds.routines.chemisty.melting_curve) for valid options. Supplied core_melting_params=</span><span class="si">{</span><span class="n">melting_params</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -291,6 +304,21 @@
     <span class="n">Tm_fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm_fes</span> <span class="o">+</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.3647</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">Tm_fe</span><span class="p">,</span> <span class="n">Tm</span><span class="p">,</span> <span class="n">dTm_dP</span></div>
+
+<span class="k">def</span> <span class="nf">liquidusFeC</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="c1"># melting T of Fe-C for x &gt;=eutectic and derivatives with respect to p and x. do not use if p&gt;6GPa</span>
+    <span class="c1"># p in GPa x in wt</span>
+    <span class="c1"># xeGraphite lowest C to have graphite</span>
+    <span class="c1"># TeGraphite temperature at lowest C to have graphite</span>
+    <span class="c1"># xe=0.0429251-0.000553585*p</span>
+    <span class="c1"># Te=1427.77+17.7561*p</span>
+    <span class="n">xeGraphite</span><span class="o">=</span><span class="mf">0.0437052</span><span class="o">+</span><span class="mf">0.00355333</span><span class="o">*</span><span class="n">p</span>
+    <span class="n">TeGraphite</span><span class="o">=</span><span class="mf">1431.19</span><span class="o">+</span><span class="mf">45.3298</span><span class="o">*</span><span class="n">p</span>
+    <span class="n">Tm</span><span class="o">=</span> <span class="o">-</span><span class="mf">973.1949862972292</span> <span class="o">-</span> <span class="mf">159.45023271197547</span><span class="o">*</span><span class="n">p</span> <span class="o">-</span> <span class="mf">2.649550966097275</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">64212.43996334035</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">1271.4356827385757</span><span class="o">*</span><span class="n">p</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mf">222434.25817139592</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">dTmdp</span><span class="o">=-</span><span class="mf">159.45023271197562</span> <span class="o">-</span> <span class="mf">5.299101932194669</span><span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="mf">1271.4356827385748</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">dTmdx</span><span class="o">=</span><span class="mf">64212.43996334037</span> <span class="o">+</span> <span class="mf">1271.4356827385748</span><span class="o">*</span><span class="n">p</span> <span class="o">-</span> <span class="mf">444868.5163427913</span><span class="o">*</span><span class="n">x</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Tm&quot;</span><span class="p">:</span><span class="n">Tm</span><span class="p">,</span><span class="s1">&#39;dTmdp&#39;</span><span class="p">:</span><span class="n">dTmdp</span><span class="p">,</span><span class="s1">&#39;dTmdx&#39;</span><span class="p">:</span><span class="n">dTmdx</span><span class="p">,</span><span class="s2">&quot;Te&quot;</span><span class="p">:</span><span class="n">TeGraphite</span><span class="p">,</span><span class="s1">&#39;xe&#39;</span><span class="p">:</span><span class="n">xeGraphite</span> <span class="p">}</span>
+    
 </pre></div>
 
            </div>

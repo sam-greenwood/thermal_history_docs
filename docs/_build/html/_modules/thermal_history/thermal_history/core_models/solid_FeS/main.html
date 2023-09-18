@@ -82,6 +82,7 @@
 <span class="kn">from</span> <span class="nn">..leeds.routines</span> <span class="kn">import</span> <span class="n">profiles</span> <span class="k">as</span> <span class="n">prof</span>
 <span class="kn">from</span> <span class="nn">..leeds.routines</span> <span class="kn">import</span> <span class="n">energy</span> <span class="k">as</span> <span class="n">en</span>
 <span class="kn">from</span> <span class="nn">..leeds.routines</span> <span class="kn">import</span> <span class="n">snow</span> <span class="k">as</span> <span class="n">snow</span>
+<span class="kn">from</span> <span class="nn">..leeds.routines</span> <span class="kn">import</span> <span class="n">rivoldini_eos</span> <span class="k">as</span> <span class="n">eos</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -193,10 +194,27 @@
 
             <span class="n">T_eutectic</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">]</span><span class="o">-</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
             <span class="n">Tm_fes</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
-            <span class="n">x_eu</span> <span class="o">=</span> <span class="mf">0.11</span> <span class="o">+</span> <span class="mf">0.187</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.065e-9</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">])</span>
-
+            <span class="c1">#x_eu = 0.11 + 0.187*np.exp(-0.065e-9*P[snow_idx])</span>
+            <span class="n">x_eu</span><span class="o">=</span><span class="n">eos</span><span class="o">.</span><span class="n">xeFeS</span><span class="p">(</span><span class="mf">1e-9</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">])</span>
+            
             <span class="n">dTm_dc</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x_eu</span><span class="p">:</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">critical_failure</span> <span class="o">=</span><span class="kc">True</span> 
+                <span class="c1">#Set flag that critical failure has occured.</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">critical_failure_reason</span> <span class="o">=</span><span class="s1">&#39;Eutectic concentration is reached in the deeper core below FeS layer&#39;</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;it:</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">it</span><span class="si">}</span><span class="s1">. Eutectic concentration is reached in the deeper core below FeS layer. Deeper core should be freezing.&#39;</span><span class="p">)</span>
 
+        
+        <span class="k">elif</span> <span class="n">prm</span><span class="o">.</span><span class="n">core_melting_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;XX&#39;</span><span class="p">:</span>
+            <span class="n">FeC</span><span class="o">=</span><span class="n">prm</span><span class="o">.</span><span class="n">core_melting_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">dTm_dc</span><span class="o">=</span><span class="n">FeC</span><span class="o">.</span><span class="n">dTmdx</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">)</span>
+            <span class="c1"># check if C in convecting core is in the graphite stability field</span>
+            <span class="c1">#print(P[0]*1e-9,P[snow_idx]*1e-9,core.conc_l[0],FeC.xg(P[0]*1e-9),FeC.xg(P[snow_idx]*1e-9),T[snow_idx],FeC.Txg(P[snow_idx]*1e-9),T[0],FeC.Txg(0))</span>
+            <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">FeC</span><span class="o">.</span><span class="n">Txg</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">snow_idx</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">)</span> <span class="ow">or</span> <span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">FeC</span><span class="o">.</span><span class="n">xg</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">)</span> <span class="p">:</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">critical_failure</span> <span class="o">=</span><span class="kc">True</span> 
+                <span class="n">model</span><span class="o">.</span><span class="n">critical_failure_reason</span> <span class="o">=</span><span class="s1">&#39;Outside graphite stability zone in r=0!&#39;</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;it:</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">it</span><span class="si">}</span><span class="s1">. Outside graphite stability zone in r=0!&#39;</span><span class="p">)</span>
+                
         <span class="k">else</span><span class="p">:</span>
             <span class="n">dTm_dc</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -278,7 +296,6 @@
 
 <span class="n">leeds</span><span class="o">.</span><span class="n">snow_evolution</span> <span class="o">=</span> <span class="n">snow_evolution</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <div class="viewcode-block" id="update"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.core_models.solid_FeS.main.html#thermal_history.thermal_history.core_models.solid_FeS.main.update">[docs]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Updates parameters based on rates of change calculatied in main fuction.</span>
@@ -295,6 +312,7 @@
 
     <span class="c1">#Update with RoC</span>
     <span class="n">core</span><span class="o">.</span><span class="n">Tcen</span>   <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">core</span><span class="o">.</span><span class="n">dT_dt</span>
+    <span class="c1">#core.Tcmb    =profiles[&#39;T&#39;][-1] # not updated in final result, why?</span>
     <span class="n">core</span><span class="o">.</span><span class="n">conc_l</span> <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">core</span><span class="o">.</span><span class="n">dc_dt</span>
     <span class="n">core</span><span class="o">.</span><span class="n">mf_l</span>    <span class="o">=</span> <span class="n">chem</span><span class="o">.</span><span class="n">mass_conc2mole_frac</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_l</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">mm</span><span class="p">)</span>
     <span class="n">core</span><span class="o">.</span><span class="n">mf_s</span>    <span class="o">=</span> <span class="n">chem</span><span class="o">.</span><span class="n">mass_conc2mole_frac</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">conc_s</span><span class="p">,</span> <span class="n">prm</span><span class="o">.</span><span class="n">mm</span><span class="p">)</span>
