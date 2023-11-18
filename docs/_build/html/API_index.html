@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> thermal_history
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            thermal_history
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -62,7 +66,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/API_index.rst.txt" rel="nofollow"> View page source</a>
@@ -86,18 +90,85 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.core_models.leeds.routines.html">routines</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html">chemistry</a></li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html">energy</a></li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html">profiles</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html">chemistry</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.LE_frac_dep"><code class="docutils literal notranslate"><span class="pre">LE_frac_dep()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.baro_coeff"><code class="docutils literal notranslate"><span class="pre">baro_coeff()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.baro_coeff_fast"><code class="docutils literal notranslate"><span class="pre">baro_coeff_fast()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.calibrate_temperature"><code class="docutils literal notranslate"><span class="pre">calibrate_temperature()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.iron_melting"><code class="docutils literal notranslate"><span class="pre">iron_melting()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.iron_melting_gradient"><code class="docutils literal notranslate"><span class="pre">iron_melting_gradient()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.mass_conc2mole_frac"><code class="docutils literal notranslate"><span class="pre">mass_conc2mole_frac()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.melt_pt_dep"><code class="docutils literal notranslate"><span class="pre">melt_pt_dep()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.melting_curve"><code class="docutils literal notranslate"><span class="pre">melting_curve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.mole_frac2mass_conc"><code class="docutils literal notranslate"><span class="pre">mole_frac2mass_conc()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.riv_Tm"><code class="docutils literal notranslate"><span class="pre">riv_Tm()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.riv_dTm_dP"><code class="docutils literal notranslate"><span class="pre">riv_dTm_dP()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.riv_dTm_dc"><code class="docutils literal notranslate"><span class="pre">riv_dTm_dc()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.simon_glatzel"><code class="docutils literal notranslate"><span class="pre">simon_glatzel()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.simon_glatzel_gradient"><code class="docutils literal notranslate"><span class="pre">simon_glatzel_gradient()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.chemistry.html#thermal_history.core_models.leeds.routines.chemistry.solid_conc"><code class="docutils literal notranslate"><span class="pre">solid_conc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html">energy</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.cond_entropy"><code class="docutils literal notranslate"><span class="pre">cond_entropy()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.gravitational"><code class="docutils literal notranslate"><span class="pre">gravitational()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.gravitational_precip"><code class="docutils literal notranslate"><span class="pre">gravitational_precip()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.heat_of_reaction"><code class="docutils literal notranslate"><span class="pre">heat_of_reaction()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.integrate"><code class="docutils literal notranslate"><span class="pre">integrate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.latent_heat"><code class="docutils literal notranslate"><span class="pre">latent_heat()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.mass_diffusion"><code class="docutils literal notranslate"><span class="pre">mass_diffusion()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.mass_flux"><code class="docutils literal notranslate"><span class="pre">mass_flux()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.radiogenic_heating"><code class="docutils literal notranslate"><span class="pre">radiogenic_heating()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.energy.html#thermal_history.core_models.leeds.routines.energy.secular_cool"><code class="docutils literal notranslate"><span class="pre">secular_cool()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html">profiles</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.adiabat"><code class="docutils literal notranslate"><span class="pre">adiabat()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.adiabat_grad"><code class="docutils literal notranslate"><span class="pre">adiabat_grad()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.adiabatic_heat_flow"><code class="docutils literal notranslate"><span class="pre">adiabatic_heat_flow()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.basic_profiles"><code class="docutils literal notranslate"><span class="pre">basic_profiles()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.conductivity"><code class="docutils literal notranslate"><span class="pre">conductivity()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.density"><code class="docutils literal notranslate"><span class="pre">density()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.entropy_melting"><code class="docutils literal notranslate"><span class="pre">entropy_melting()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.fit_adiabat_polynomials"><code class="docutils literal notranslate"><span class="pre">fit_adiabat_polynomials()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.grav_potential"><code class="docutils literal notranslate"><span class="pre">grav_potential()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.gravity"><code class="docutils literal notranslate"><span class="pre">gravity()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.ic_radius"><code class="docutils literal notranslate"><span class="pre">ic_radius()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.mass"><code class="docutils literal notranslate"><span class="pre">mass()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.mass_correct"><code class="docutils literal notranslate"><span class="pre">mass_correct()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.radial_grid"><code class="docutils literal notranslate"><span class="pre">radial_grid()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.specific_heat"><code class="docutils literal notranslate"><span class="pre">specific_heat()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.temp_dependent_profiles"><code class="docutils literal notranslate"><span class="pre">temp_dependent_profiles()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.profiles.html#thermal_history.core_models.leeds.routines.profiles.thermal_expansivity"><code class="docutils literal notranslate"><span class="pre">thermal_expansivity()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.riv_pre_compute_poly.html">riv_pre_compute_poly</a></li>
 <li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.rivoldini_eos.html">rivoldini_eos</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.rivoldini_eos.html#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html">snow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html">snow</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.Cl_calc"><code class="docutils literal notranslate"><span class="pre">Cl_calc()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.Cp_factor"><code class="docutils literal notranslate"><span class="pre">Cp_factor()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.check_top_down_freezing"><code class="docutils literal notranslate"><span class="pre">check_top_down_freezing()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.gravitational_freezing"><code class="docutils literal notranslate"><span class="pre">gravitational_freezing()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.gravitational_melting"><code class="docutils literal notranslate"><span class="pre">gravitational_melting()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.latent_snow"><code class="docutils literal notranslate"><span class="pre">latent_snow()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.snow_composition"><code class="docutils literal notranslate"><span class="pre">snow_composition()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.leeds.routines.snow.html#thermal_history.core_models.leeds.routines.snow.snow_radius"><code class="docutils literal notranslate"><span class="pre">snow_radius()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.core_models.leeds.main.html">main</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.core_models.leeds.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.set_Q_rs"><code class="docutils literal notranslate"><span class="pre">set_Q_rs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.snow_evolution"><code class="docutils literal notranslate"><span class="pre">snow_evolution()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.leeds.main.html#thermal_history.core_models.leeds.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.core_models.simple_test.html">simple_test</a><ul>
@@ -111,10 +182,19 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.core_models.solid_FeS.routines.html">routines</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.solid_FeS.routines.chemistry.html">chemistry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.solid_FeS.routines.chemistry.html">chemistry</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_curve"><code class="docutils literal notranslate"><span class="pre">melting_curve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_temp_R18"><code class="docutils literal notranslate"><span class="pre">melting_temp_R18()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.core_models.solid_FeS.main.html">main</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.core_models.solid_FeS.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.solid_FeS.main.html#thermal_history.core_models.solid_FeS.main.set_Q_rs"><code class="docutils literal notranslate"><span class="pre">set_Q_rs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.solid_FeS.main.html#thermal_history.core_models.solid_FeS.main.snow_evolution"><code class="docutils literal notranslate"><span class="pre">snow_evolution()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.core_models.solid_FeS.main.html#thermal_history.core_models.solid_FeS.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -126,7 +206,10 @@
 <li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.driscol_bercovici14.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.mantle_models.driscol_bercovici14.main.html">main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.mantle_models.driscol_bercovici14.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.driscol_bercovici14.main.html#thermal_history.mantle_models.driscol_bercovici14.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.html">knibbe_westrenen18</a><ul>
@@ -135,7 +218,13 @@
 <li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.main.html">main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.joint_conduction"><code class="docutils literal notranslate"><span class="pre">joint_conduction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.mantle_models.thiriet19.html">thiriet19</a><ul>
@@ -144,18 +233,29 @@
 <li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.thiriet19.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.mantle_models.thiriet19.main.html">main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.mantle_models.thiriet19.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.mantle_models.thiriet19.main.html#thermal_history.mantle_models.thiriet19.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="thermal_history.stable_layer_models.html">stable_layer_models</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_conducting.html">FeS_conducting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_conducting.main.html">main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_conducting.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_conducting.main.html#thermal_history.stable_layer_models.FeS_conducting.main.conducting_FeS"><code class="docutils literal notranslate"><span class="pre">conducting_FeS()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_conducting.main.html#thermal_history.stable_layer_models.FeS_conducting.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_convecting.html">FeS_convecting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_convecting.main.html">main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_convecting.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.stable_layer_models.FeS_convecting.main.conducting_FeS"><code class="docutils literal notranslate"><span class="pre">conducting_FeS()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.stable_layer_models.FeS_convecting.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.html">leeds_chemical</a><ul>
@@ -166,11 +266,31 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.html">routines</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.html">diffusion</a></li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html">functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.html">diffusion</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.html#thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.LHS"><code class="docutils literal notranslate"><span class="pre">LHS()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.html#thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.RHS"><code class="docutils literal notranslate"><span class="pre">RHS()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.html#thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.diffusion"><code class="docutils literal notranslate"><span class="pre">diffusion()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.html#thermal_history.stable_layer_models.leeds_chemical.routines.diffusion.thomas_algorithm"><code class="docutils literal notranslate"><span class="pre">thomas_algorithm()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html">functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html#thermal_history.stable_layer_models.leeds_chemical.routines.functions.buffett_seagle_10_growth"><code class="docutils literal notranslate"><span class="pre">buffett_seagle_10_growth()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html#thermal_history.stable_layer_models.leeds_chemical.routines.functions.change_domain_size"><code class="docutils literal notranslate"><span class="pre">change_domain_size()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html#thermal_history.stable_layer_models.leeds_chemical.routines.functions.cubic_fit"><code class="docutils literal notranslate"><span class="pre">cubic_fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html#thermal_history.stable_layer_models.leeds_chemical.routines.functions.determine_strat_type"><code class="docutils literal notranslate"><span class="pre">determine_strat_type()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html#thermal_history.stable_layer_models.leeds_chemical.routines.functions.primordial_layer_init"><code class="docutils literal notranslate"><span class="pre">primordial_layer_init()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.routines.functions.html#thermal_history.stable_layer_models.leeds_chemical.routines.functions.retreat_layer"><code class="docutils literal notranslate"><span class="pre">retreat_layer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.stable_layer_models.leeds_chemical.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.stable_layer_models.leeds_chemical.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.stable_layer_models.leeds_chemical.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.stable_layer_models.leeds_chemical.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.html">leeds_thermal</a><ul>
@@ -181,11 +301,32 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.html">routines</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.html">diffusion</a></li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html">functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.html">diffusion</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.html#thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.LHS"><code class="docutils literal notranslate"><span class="pre">LHS()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.html#thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.RHS"><code class="docutils literal notranslate"><span class="pre">RHS()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.html#thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.diffusion"><code class="docutils literal notranslate"><span class="pre">diffusion()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.html#thermal_history.stable_layer_models.leeds_thermal.routines.diffusion.thomas_algorithm"><code class="docutils literal notranslate"><span class="pre">thomas_algorithm()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html">functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html#thermal_history.stable_layer_models.leeds_thermal.routines.functions.buffett_seagle_10_growth"><code class="docutils literal notranslate"><span class="pre">buffett_seagle_10_growth()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html#thermal_history.stable_layer_models.leeds_thermal.routines.functions.change_domain_size"><code class="docutils literal notranslate"><span class="pre">change_domain_size()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html#thermal_history.stable_layer_models.leeds_thermal.routines.functions.cubic_fit"><code class="docutils literal notranslate"><span class="pre">cubic_fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html#thermal_history.stable_layer_models.leeds_thermal.routines.functions.determine_strat_type"><code class="docutils literal notranslate"><span class="pre">determine_strat_type()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html#thermal_history.stable_layer_models.leeds_thermal.routines.functions.primordial_layer_init"><code class="docutils literal notranslate"><span class="pre">primordial_layer_init()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.routines.functions.html#thermal_history.stable_layer_models.leeds_thermal.routines.functions.retreat_layer"><code class="docutils literal notranslate"><span class="pre">retreat_layer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.stable_layer_models.leeds_thermal.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.stable_layer_models.leeds_thermal.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.stable_layer_models.leeds_thermal.main.pure_thermal_method"><code class="docutils literal notranslate"><span class="pre">pure_thermal_method()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.stable_layer_models.leeds_thermal.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.stable_layer_models.leeds_thermal.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.stable_layer_models.solid_FeS.html">solid_FeS</a><ul>
@@ -195,7 +336,11 @@
 <li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.solid_FeS.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.solid_FeS.main.html">main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.stable_layer_models.solid_FeS.main.html">main</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.solid_FeS.main.html#thermal_history.stable_layer_models.solid_FeS.main.FeS_method"><code class="docutils literal notranslate"><span class="pre">FeS_method()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.stable_layer_models.solid_FeS.main.html#thermal_history.stable_layer_models.solid_FeS.main.pure_thermal_check"><code class="docutils literal notranslate"><span class="pre">pure_thermal_check()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -217,7 +362,15 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.routines.snow.html">snow</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html#thermal_history.thermal_history.core_models.leeds.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html#thermal_history.thermal_history.core_models.leeds.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html#thermal_history.thermal_history.core_models.leeds.main.set_Q_rs"><code class="docutils literal notranslate"><span class="pre">set_Q_rs()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html#thermal_history.thermal_history.core_models.leeds.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html#thermal_history.thermal_history.core_models.leeds.main.snow_evolution"><code class="docutils literal notranslate"><span class="pre">snow_evolution()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.leeds.main.html#thermal_history.thermal_history.core_models.leeds.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.core_models.simple_test.html">simple_test</a><ul>
@@ -234,7 +387,12 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.solid_FeS.routines.chemistry.html">chemistry</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.core_models.solid_FeS.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.core_models.solid_FeS.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.solid_FeS.main.html#thermal_history.thermal_history.core_models.solid_FeS.main.set_Q_rs"><code class="docutils literal notranslate"><span class="pre">set_Q_rs()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.solid_FeS.main.html#thermal_history.thermal_history.core_models.solid_FeS.main.snow_evolution"><code class="docutils literal notranslate"><span class="pre">snow_evolution()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.core_models.solid_FeS.main.html#thermal_history.thermal_history.core_models.solid_FeS.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,7 +404,10 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.driscol_bercovici14.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.driscol_bercovici14.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.driscol_bercovici14.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.driscol_bercovici14.main.html#thermal_history.thermal_history.mantle_models.driscol_bercovici14.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.html">knibbe_westrenen18</a><ul>
@@ -255,7 +416,13 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.joint_conduction"><code class="docutils literal notranslate"><span class="pre">joint_conduction()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.thermal_history.mantle_models.knibbe_westrenen18.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.thiriet19.html">thiriet19</a><ul>
@@ -264,18 +431,29 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.thiriet19.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.thiriet19.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.thiriet19.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.mantle_models.thiriet19.main.html#thermal_history.thermal_history.mantle_models.thiriet19.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.html">stable_layer_models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_conducting.html">FeS_conducting</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_conducting.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_conducting.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_conducting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_conducting.main.conducting_FeS"><code class="docutils literal notranslate"><span class="pre">conducting_FeS()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_conducting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_conducting.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_convecting.html">FeS_convecting</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.conducting_FeS"><code class="docutils literal notranslate"><span class="pre">conducting_FeS()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.html">leeds_chemical</a><ul>
@@ -290,7 +468,13 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.routines.functions.html">functions</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.html#thermal_history.thermal_history.stable_layer_models.leeds_chemical.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.html">leeds_thermal</a><ul>
@@ -305,7 +489,14 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.routines.functions.html">functions</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.evolve"><code class="docutils literal notranslate"><span class="pre">evolve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.progress"><code class="docutils literal notranslate"><span class="pre">progress()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.pure_thermal_method"><code class="docutils literal notranslate"><span class="pre">pure_thermal_method()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.html#thermal_history.thermal_history.stable_layer_models.leeds_thermal.main.update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.solid_FeS.html">solid_FeS</a><ul>
@@ -315,27 +506,145 @@
 <li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.solid_FeS.html#references">References:</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.solid_FeS.main.html">main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.solid_FeS.main.html">main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.solid_FeS.main.html#thermal_history.thermal_history.stable_layer_models.solid_FeS.main.FeS_method"><code class="docutils literal notranslate"><span class="pre">FeS_method()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.stable_layer_models.solid_FeS.main.html#thermal_history.thermal_history.stable_layer_models.solid_FeS.main.pure_thermal_check"><code class="docutils literal notranslate"><span class="pre">pure_thermal_check()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.utils.html">utils</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.utils.optimised_funcs.html">optimised_funcs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.utils.utilities.html">utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.utils.optimised_funcs.html">optimised_funcs</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.utils.optimised_funcs.html#thermal_history.thermal_history.utils.optimised_funcs.jit_polyval"><code class="docutils literal notranslate"><span class="pre">jit_polyval()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.utils.optimised_funcs.html#thermal_history.thermal_history.utils.optimised_funcs.linspace"><code class="docutils literal notranslate"><span class="pre">linspace()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.utils.optimised_funcs.html#thermal_history.thermal_history.utils.optimised_funcs.trapezoid"><code class="docutils literal notranslate"><span class="pre">trapezoid()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.model.html">model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html">model_classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.utils.utilities.html">utilities</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.utils.utilities.html#thermal_history.thermal_history.utils.utilities.PackagePathFilter"><code class="docutils literal notranslate"><span class="pre">PackagePathFilter</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="thermal_history.thermal_history.utils.utilities.html#thermal_history.thermal_history.utils.utilities.PackagePathFilter.filter"><code class="docutils literal notranslate"><span class="pre">PackagePathFilter.filter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.utils.utilities.html#thermal_history.thermal_history.utils.utilities.create_parameters_file"><code class="docutils literal notranslate"><span class="pre">create_parameters_file()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.utils.utilities.html#thermal_history.thermal_history.utils.utilities.write_line"><code class="docutils literal notranslate"><span class="pre">write_line()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.model.html">model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model.html#thermal_history.thermal_history.model.Parameters"><code class="docutils literal notranslate"><span class="pre">Parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model.html#thermal_history.thermal_history.model.setup_model"><code class="docutils literal notranslate"><span class="pre">setup_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html">model_classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.model_type"><code class="docutils literal notranslate"><span class="pre">BaseModel.model_type</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.ys"><code class="docutils literal notranslate"><span class="pre">BaseModel.ys</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.parameters"><code class="docutils literal notranslate"><span class="pre">BaseModel.parameters</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.evolve"><code class="docutils literal notranslate"><span class="pre">BaseModel.evolve()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.setup"><code class="docutils literal notranslate"><span class="pre">BaseModel.setup()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.state"><code class="docutils literal notranslate"><span class="pre">BaseModel.state()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.BaseModel.update"><code class="docutils literal notranslate"><span class="pre">BaseModel.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.Core"><code class="docutils literal notranslate"><span class="pre">Core</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.Core.model_type"><code class="docutils literal notranslate"><span class="pre">Core.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.Mantle"><code class="docutils literal notranslate"><span class="pre">Mantle</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.Mantle.model_type"><code class="docutils literal notranslate"><span class="pre">Mantle.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.StableLayer"><code class="docutils literal notranslate"><span class="pre">StableLayer</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.StableLayer.model_type"><code class="docutils literal notranslate"><span class="pre">StableLayer.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel"><code class="docutils literal notranslate"><span class="pre">ThermalModel</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.model_type"><code class="docutils literal notranslate"><span class="pre">ThermalModel.model_type</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.time"><code class="docutils literal notranslate"><span class="pre">ThermalModel.time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.it"><code class="docutils literal notranslate"><span class="pre">ThermalModel.it</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.append_to_save_dict"><code class="docutils literal notranslate"><span class="pre">ThermalModel.append_to_save_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.evolve"><code class="docutils literal notranslate"><span class="pre">ThermalModel.evolve()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.print_progress"><code class="docutils literal notranslate"><span class="pre">ThermalModel.print_progress()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.save_dict_to_numpy_array"><code class="docutils literal notranslate"><span class="pre">ThermalModel.save_dict_to_numpy_array()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.setup_save_dict"><code class="docutils literal notranslate"><span class="pre">ThermalModel.setup_save_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.state"><code class="docutils literal notranslate"><span class="pre">ThermalModel.state()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.update"><code class="docutils literal notranslate"><span class="pre">ThermalModel.update()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.warnings"><code class="docutils literal notranslate"><span class="pre">ThermalModel.warnings()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.write_data"><code class="docutils literal notranslate"><span class="pre">ThermalModel.write_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.thermal_history.model_classes.html#thermal_history.thermal_history.model_classes.ThermalModel.write_profiles"><code class="docutils literal notranslate"><span class="pre">ThermalModel.write_profiles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="thermal_history.utils.html">utils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="thermal_history.utils.optimised_funcs.html">optimised_funcs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="thermal_history.utils.utilities.html">utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.utils.optimised_funcs.html">optimised_funcs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.utils.optimised_funcs.html#thermal_history.utils.optimised_funcs.jit_polyval"><code class="docutils literal notranslate"><span class="pre">jit_polyval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.utils.optimised_funcs.html#thermal_history.utils.optimised_funcs.linspace"><code class="docutils literal notranslate"><span class="pre">linspace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.utils.optimised_funcs.html#thermal_history.utils.optimised_funcs.trapezoid"><code class="docutils literal notranslate"><span class="pre">trapezoid()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="thermal_history.model.html">model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="thermal_history.model_classes.html">model_classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.utils.utilities.html">utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.utils.utilities.html#thermal_history.utils.utilities.PackagePathFilter"><code class="docutils literal notranslate"><span class="pre">PackagePathFilter</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="thermal_history.utils.utilities.html#thermal_history.utils.utilities.PackagePathFilter.filter"><code class="docutils literal notranslate"><span class="pre">PackagePathFilter.filter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.utils.utilities.html#thermal_history.utils.utilities.create_parameters_file"><code class="docutils literal notranslate"><span class="pre">create_parameters_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.utils.utilities.html#thermal_history.utils.utilities.write_line"><code class="docutils literal notranslate"><span class="pre">write_line()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="thermal_history.model.html">model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model.html#thermal_history.model.Parameters"><code class="docutils literal notranslate"><span class="pre">Parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model.html#thermal_history.model.setup_model"><code class="docutils literal notranslate"><span class="pre">setup_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="thermal_history.model_classes.html">model_classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.model_type"><code class="docutils literal notranslate"><span class="pre">BaseModel.model_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.ys"><code class="docutils literal notranslate"><span class="pre">BaseModel.ys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.parameters"><code class="docutils literal notranslate"><span class="pre">BaseModel.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.evolve"><code class="docutils literal notranslate"><span class="pre">BaseModel.evolve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.setup"><code class="docutils literal notranslate"><span class="pre">BaseModel.setup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.state"><code class="docutils literal notranslate"><span class="pre">BaseModel.state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.BaseModel.update"><code class="docutils literal notranslate"><span class="pre">BaseModel.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.Core"><code class="docutils literal notranslate"><span class="pre">Core</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.Core.model_type"><code class="docutils literal notranslate"><span class="pre">Core.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.Mantle"><code class="docutils literal notranslate"><span class="pre">Mantle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.Mantle.model_type"><code class="docutils literal notranslate"><span class="pre">Mantle.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.StableLayer"><code class="docutils literal notranslate"><span class="pre">StableLayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.StableLayer.model_type"><code class="docutils literal notranslate"><span class="pre">StableLayer.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel"><code class="docutils literal notranslate"><span class="pre">ThermalModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.model_type"><code class="docutils literal notranslate"><span class="pre">ThermalModel.model_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.time"><code class="docutils literal notranslate"><span class="pre">ThermalModel.time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.it"><code class="docutils literal notranslate"><span class="pre">ThermalModel.it</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.append_to_save_dict"><code class="docutils literal notranslate"><span class="pre">ThermalModel.append_to_save_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.evolve"><code class="docutils literal notranslate"><span class="pre">ThermalModel.evolve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.print_progress"><code class="docutils literal notranslate"><span class="pre">ThermalModel.print_progress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.save_dict_to_numpy_array"><code class="docutils literal notranslate"><span class="pre">ThermalModel.save_dict_to_numpy_array()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.setup_save_dict"><code class="docutils literal notranslate"><span class="pre">ThermalModel.setup_save_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.state"><code class="docutils literal notranslate"><span class="pre">ThermalModel.state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.update"><code class="docutils literal notranslate"><span class="pre">ThermalModel.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.warnings"><code class="docutils literal notranslate"><span class="pre">ThermalModel.warnings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.write_data"><code class="docutils literal notranslate"><span class="pre">ThermalModel.write_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="thermal_history.model_classes.html#thermal_history.model_classes.ThermalModel.write_profiles"><code class="docutils literal notranslate"><span class="pre">ThermalModel.write_profiles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
