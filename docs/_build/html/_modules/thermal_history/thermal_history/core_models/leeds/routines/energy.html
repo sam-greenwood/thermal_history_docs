@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.thermal_history.core_models.leeds.routines.energy &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../../_static/jquery.js"></script>
-        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../../_static/doctools.js"></script>
-        <script src="../../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" /> 
@@ -82,7 +84,9 @@
 <span class="c1">###############################################################################</span>
 <span class="c1">#Latent Heat</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="latent_heat"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.latent_heat">[docs]</a><span class="k">def</span> <span class="nf">latent_heat</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">idx</span><span class="p">):</span>
+<div class="viewcode-block" id="latent_heat">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.latent_heat">[docs]</a>
+<span class="k">def</span> <span class="nf">latent_heat</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">idx</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Latent heat of fusion during IC growth</span>
 
 <span class="sd">    Parameters</span>
@@ -115,10 +119,13 @@
 
     <span class="k">return</span> <span class="n">Ql_tilda</span><span class="p">,</span> <span class="n">El_tilda</span></div>
 
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Gravitational Energy</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="gravitational"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.gravitational">[docs]</a><span class="k">def</span> <span class="nf">gravitational</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">Cc</span><span class="p">,</span> <span class="n">M_oc</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rs_idx</span><span class="p">,</span> <span class="n">Tcmb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="gravitational">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.gravitational">[docs]</a>
+<span class="k">def</span> <span class="nf">gravitational</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">Cc</span><span class="p">,</span> <span class="n">M_oc</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rs_idx</span><span class="p">,</span> <span class="n">Tcmb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Gravitational energy associated with growth of IC</span>
 
 <span class="sd">    Parameters</span>
@@ -163,10 +170,13 @@
 
     <span class="k">return</span> <span class="n">Qg_tilda</span><span class="p">,</span> <span class="n">Eg_tilda</span></div>
 
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Gravitational Energy for Magnesium precipitation from Du et al. 2017</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="gravitational_precip"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.gravitational_precip">[docs]</a><span class="k">def</span> <span class="nf">gravitational_precip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">Cm</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">):</span>
+<div class="viewcode-block" id="gravitational_precip">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.gravitational_precip">[docs]</a>
+<span class="k">def</span> <span class="nf">gravitational_precip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">Cm</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Gravitational energy associated with precipitation</span>
 
 <span class="sd">    Parameters</span>
@@ -200,10 +210,13 @@
 
     <span class="k">return</span> <span class="n">Qg_tilda</span><span class="p">,</span> <span class="n">Eg_tilda</span></div>
 
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Secular cooling</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="secular_cool"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.secular_cool">[docs]</a><span class="k">def</span> <span class="nf">secular_cool</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">cp</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span> <span class="n">Tcmb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="secular_cool">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.secular_cool">[docs]</a>
+<span class="k">def</span> <span class="nf">secular_cool</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">cp</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span> <span class="n">Tcmb</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Energy from change in sensible energy from secular cooling</span>
 
 <span class="sd">    Parameters</span>
@@ -242,10 +255,13 @@
     <span class="n">Es</span> <span class="o">=</span> <span class="o">-</span><span class="n">I2</span><span class="o">/</span><span class="n">Tcen</span>
 
     <span class="k">return</span> <span class="n">Qs</span><span class="p">,</span> <span class="n">Es</span></div>
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Radiogenic heating</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="radiogenic_heating"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.radiogenic_heating">[docs]</a><span class="k">def</span> <span class="nf">radiogenic_heating</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">Mass</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">decay_time</span><span class="p">):</span>
+<div class="viewcode-block" id="radiogenic_heating">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.radiogenic_heating">[docs]</a>
+<span class="k">def</span> <span class="nf">radiogenic_heating</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">Ta</span><span class="p">,</span><span class="n">Mass</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">decay_time</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Heat from radiogenic heating (NOT TESTED)</span>
 
 <span class="sd">    Parameters</span>
@@ -277,10 +293,13 @@
     <span class="n">Er</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="n">Ta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Ta</span><span class="p">))</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">Qr</span><span class="p">,</span> <span class="n">Er</span></div>
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Entropy of conduction</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="cond_entropy"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.cond_entropy">[docs]</a><span class="k">def</span> <span class="nf">cond_entropy</span><span class="p">(</span><span class="n">Ta</span><span class="p">,</span><span class="n">Ta_grad</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">idx</span><span class="p">):</span>
+<div class="viewcode-block" id="cond_entropy">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.cond_entropy">[docs]</a>
+<span class="k">def</span> <span class="nf">cond_entropy</span><span class="p">(</span><span class="n">Ta</span><span class="p">,</span><span class="n">Ta_grad</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">idx</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Entropy of thermal conduction in adiabatic region</span>
 
 <span class="sd">    Parameters</span>
@@ -305,10 +324,13 @@
     <span class="n">Ek</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">r</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">k</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">Ta_grad</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">Ta</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="c1">#pdb.set_trace()</span>
     <span class="k">return</span> <span class="n">Ek</span></div>
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Entropy of mixing</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="heat_of_reaction"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.heat_of_reaction">[docs]</a><span class="k">def</span> <span class="nf">heat_of_reaction</span><span class="p">(</span><span class="n">rho_oc</span><span class="p">,</span><span class="n">dmu_dt_poly</span><span class="p">,</span><span class="n">Cc</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">r_oc</span><span class="p">,</span><span class="n">mm</span><span class="p">):</span>
+<div class="viewcode-block" id="heat_of_reaction">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.heat_of_reaction">[docs]</a>
+<span class="k">def</span> <span class="nf">heat_of_reaction</span><span class="p">(</span><span class="n">rho_oc</span><span class="p">,</span><span class="n">dmu_dt_poly</span><span class="p">,</span><span class="n">Cc</span><span class="p">,</span><span class="n">Cr</span><span class="p">,</span><span class="n">r_oc</span><span class="p">,</span><span class="n">mm</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Entropy of heat of reaction at ICB (NOT TESTED IN A WHILE)</span>
 
 <span class="sd">    Parameters</span>
@@ -340,10 +362,13 @@
 
     <span class="k">return</span> <span class="n">Eh_tilda</span></div>
 
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Entropy of mass diffusion</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="mass_diffusion"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.mass_diffusion">[docs]</a><span class="k">def</span> <span class="nf">mass_diffusion</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+<div class="viewcode-block" id="mass_diffusion">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.mass_diffusion">[docs]</a>
+<span class="k">def</span> <span class="nf">mass_diffusion</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Entropy from barodiffusion of light elements</span>
 
 <span class="sd">    Parameters</span>
@@ -372,10 +397,13 @@
 
     <span class="k">return</span> <span class="n">E_alpha</span></div>
 
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Mass flux</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="mass_flux"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.mass_flux">[docs]</a><span class="k">def</span> <span class="nf">mass_flux</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">c_grad</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<div class="viewcode-block" id="mass_flux">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.mass_flux">[docs]</a>
+<span class="k">def</span> <span class="nf">mass_flux</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">alpha_D</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">c_grad</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Mass flux from diffusion down chemical and pressure gradients</span>
 
 <span class="sd">    Parameters</span>
@@ -401,10 +429,13 @@
     <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="n">rho</span><span class="o">*</span><span class="n">D</span><span class="o">*</span><span class="n">c_grad</span> <span class="o">+</span> <span class="n">alpha_c</span><span class="o">*</span><span class="n">alpha_D</span><span class="o">*</span><span class="n">g</span>
     <span class="k">return</span> <span class="n">i</span></div>
 
+
 <span class="c1">###############################################################################</span>
 <span class="c1">#Numerical integration</span>
 <span class="c1">###############################################################################</span>
-<div class="viewcode-block" id="integrate"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.integrate">[docs]</a><span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="integrate">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.energy.html#thermal_history.thermal_history.core_models.leeds.routines.energy.integrate">[docs]</a>
+<span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Depreciated in favour of thermal_history.utils.optimised_funcs.trapezoid</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -413,6 +444,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">cumtrapz</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">A</span></div>
+
 </pre></div>
 
            </div>

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.mantle_models.knibbe_westrenen18.main &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -89,7 +91,9 @@
 
 
 <span class="c1">#setup, evolve, and update functions</span>
-<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="setup">
+<a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.setup">[docs]</a>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Include any code that should be run after parameters have been loaded in and before 1st iteration is run.</span>
 <span class="sd">    E.g. set any initial conditions as attributes of the model.</span>
@@ -133,9 +137,12 @@
 
     <span class="n">mantle</span><span class="o">.</span><span class="n">Qr_present</span> <span class="o">=</span> <span class="n">Q_total</span>
     <span class="n">mantle</span><span class="o">.</span><span class="n">H_present</span>  <span class="o">=</span> <span class="n">H</span></div>
+
     
 
-<div class="viewcode-block" id="evolve"><a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.evolve">[docs]</a><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="evolve">
+<a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.evolve">[docs]</a>
+<span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculates one timestep of the model.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -398,7 +405,10 @@
     <span class="n">mantle</span><span class="o">.</span><span class="n">T_cmb</span>  <span class="o">=</span> <span class="n">T_cmb</span></div>
 
 
-<div class="viewcode-block" id="update"><a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.update">[docs]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+
+<div class="viewcode-block" id="update">
+<a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.update">[docs]</a>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Update variables based on what was calculated in the evolve() function.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -414,6 +424,7 @@
 
     <span class="k">if</span> <span class="n">mantle</span><span class="o">.</span><span class="n">Dl</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">prm</span><span class="o">.</span><span class="n">r_surf</span><span class="o">-</span><span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="o">+</span><span class="n">mantle</span><span class="o">.</span><span class="n">delta_lower</span><span class="p">):</span>
         <span class="n">mantle</span><span class="o">.</span><span class="n">Dl</span> <span class="o">=</span> <span class="n">prm</span><span class="o">.</span><span class="n">r_surf</span><span class="o">-</span><span class="n">prm</span><span class="o">.</span><span class="n">r_cmb</span><span class="o">+</span><span class="n">mantle</span><span class="o">.</span><span class="n">delta_lower</span></div>
+
 
 <span class="c1">#Required parameters. Used to check given parameters before start. Give the name of the parameter as the key with a description as the associated value within the dictionary.</span>
 
@@ -451,7 +462,9 @@
 <span class="c1">#This fixed the error in the original code of Knibbe and Van Westrenen (2018). They numerically solved the problem</span>
 <span class="c1">#rather than analytically solving it leading to incorrect values at specific timesteps early on in the model runs.</span>
 <span class="c1">#The main conclusions of the paper remain unchanged after fixing it.</span>
-<div class="viewcode-block" id="joint_conduction"><a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.joint_conduction">[docs]</a><span class="k">def</span> <span class="nf">joint_conduction</span><span class="p">(</span><span class="n">T_upper</span><span class="p">,</span> <span class="n">T_lower</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<div class="viewcode-block" id="joint_conduction">
+<a class="viewcode-back" href="../../../../thermal_history.mantle_models.knibbe_westrenen18.main.html#thermal_history.mantle_models.knibbe_westrenen18.main.joint_conduction">[docs]</a>
+<span class="k">def</span> <span class="nf">joint_conduction</span><span class="p">(</span><span class="n">T_upper</span><span class="p">,</span> <span class="n">T_lower</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Steady state spherical conduction solution for n shells.</span>
 
 <span class="sd">    Parameters</span>
@@ -562,6 +575,7 @@
 
     <span class="c1">#Return list where 0th index gives array(A1,B1) and (n-1) index gives array(An,Bn)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span></div>
+
 
 
 

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>utilities &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -94,16 +96,16 @@
            <div itemprop="articleBody">
              
   <section id="utilities">
-<h1>utilities<a class="headerlink" href="#utilities" title="Permalink to this heading"></a></h1>
+<h1>utilities<a class="headerlink" href="#utilities" title="Link to this heading"></a></h1>
 <p>(thermal_history.utils.utilities)</p>
-<span class="target" id="module-thermal_history.utils.utilities"></span><dl class="py class">
+<dl class="py class" id="module-thermal_history.utils.utilities">
 <dt class="sig sig-object py" id="thermal_history.utils.utilities.PackagePathFilter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PackagePathFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#PackagePathFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.PackagePathFilter" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PackagePathFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#PackagePathFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.PackagePathFilter" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Filter</span></code></p>
 <p>Custom filter to extract just the pathname realtive to the thermal_history package top level.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="thermal_history.utils.utilities.PackagePathFilter.filter">
-<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#PackagePathFilter.filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.PackagePathFilter.filter" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#PackagePathFilter.filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.PackagePathFilter.filter" title="Link to this definition"></a></dt>
 <dd><p>Determine if the specified record is to be logged.</p>
 <p>Returns True if the record should be logged, or False otherwise.
 If deemed appropriate, the record may be modified in-place.</p>
@@ -113,7 +115,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="thermal_history.utils.utilities.create_parameters_file">
-<span class="sig-name descname"><span class="pre">create_parameters_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stable_layer_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mantle_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#create_parameters_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.create_parameters_file" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_parameters_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stable_layer_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mantle_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#create_parameters_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.create_parameters_file" title="Link to this definition"></a></dt>
 <dd><p>Generate an input parameters file for the specified methods.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -131,7 +133,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="thermal_history.utils.utilities.write_line">
-<span class="sig-name descname"><span class="pre">write_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#write_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.write_line" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">write_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/thermal_history/utils/utilities.html#write_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#thermal_history.utils.utilities.write_line" title="Link to this definition"></a></dt>
 <dd><p>Write parameter to file in a formatted manner.</p>
 <p>Used by create_parameters_file().</p>
 <dl class="field-list simple">

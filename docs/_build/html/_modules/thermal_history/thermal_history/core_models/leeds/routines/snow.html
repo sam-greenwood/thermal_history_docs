@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.thermal_history.core_models.leeds.routines.snow &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../../_static/jquery.js"></script>
-        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../../_static/doctools.js"></script>
-        <script src="../../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" /> 
@@ -81,7 +83,9 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="snow_radius"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.snow_radius">[docs]</a><span class="nd">@njit</span>
+<div class="viewcode-block" id="snow_radius">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.snow_radius">[docs]</a>
+<span class="nd">@njit</span>
 <span class="k">def</span> <span class="nf">snow_radius</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Tm</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Finds the snow zone radius by intersection of the temperature with the melting curve.</span>
 
@@ -129,7 +133,10 @@
     <span class="k">return</span> <span class="n">r_snow</span></div>
 
 
-<div class="viewcode-block" id="check_top_down_freezing"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.check_top_down_freezing">[docs]</a><span class="k">def</span> <span class="nf">check_top_down_freezing</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Tm</span><span class="p">):</span>
+
+<div class="viewcode-block" id="check_top_down_freezing">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.check_top_down_freezing">[docs]</a>
+<span class="k">def</span> <span class="nf">check_top_down_freezing</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Tm</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Checks for top-down freezing regime</span>
 
 <span class="sd">    Parameters</span>
@@ -177,7 +184,10 @@
 
 
 
-<div class="viewcode-block" id="snow_composition"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.snow_composition">[docs]</a><span class="k">def</span> <span class="nf">snow_composition</span><span class="p">(</span><span class="n">Ta</span><span class="p">,</span><span class="n">Tm_fe</span><span class="p">,</span><span class="n">initial_conc</span><span class="p">,</span><span class="n">snow_index</span><span class="p">,</span> <span class="n">conc_l</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">melting_params</span><span class="p">):</span>
+
+<div class="viewcode-block" id="snow_composition">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.snow_composition">[docs]</a>
+<span class="k">def</span> <span class="nf">snow_composition</span><span class="p">(</span><span class="n">Ta</span><span class="p">,</span><span class="n">Tm_fe</span><span class="p">,</span><span class="n">initial_conc</span><span class="p">,</span><span class="n">snow_index</span><span class="p">,</span> <span class="n">conc_l</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">melting_params</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculates the composition of the slurry such that the melting temperature</span>
@@ -240,7 +250,10 @@
 
     <span class="k">return</span> <span class="n">conc_l_snow</span></div>
 
-<div class="viewcode-block" id="Cl_calc"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.Cl_calc">[docs]</a><span class="nd">@njit</span>
+
+<div class="viewcode-block" id="Cl_calc">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.Cl_calc">[docs]</a>
+<span class="nd">@njit</span>
 <span class="k">def</span> <span class="nf">Cl_calc</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">conc_l</span><span class="p">,</span><span class="n">dmu_dc</span><span class="p">,</span><span class="n">snow_index</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Returns the Cl factor which normalises changes in slurry mass fraction</span>
 <span class="sd">    to changes in temperature.</span>
@@ -274,7 +287,10 @@
 
     <span class="k">return</span> <span class="n">Cl</span></div>
 
-<div class="viewcode-block" id="latent_snow"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.latent_snow">[docs]</a><span class="k">def</span> <span class="nf">latent_snow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Cl</span><span class="p">,</span> <span class="n">conc_l_profile</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
+
+<div class="viewcode-block" id="latent_snow">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.latent_snow">[docs]</a>
+<span class="k">def</span> <span class="nf">latent_snow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Cl</span><span class="p">,</span> <span class="n">conc_l_profile</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Returns the normalised rate of latent heat release from changes in mass fraction throughout</span>
 <span class="sd">    the slurry.</span>
@@ -313,7 +329,10 @@
 
     <span class="k">return</span> <span class="n">Ql_tilde</span><span class="p">,</span> <span class="n">El_tilde</span></div>
 
-<div class="viewcode-block" id="Cp_factor"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.Cp_factor">[docs]</a><span class="k">def</span> <span class="nf">Cp_factor</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">Cl</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">M_liquid</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Cp_factor">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.Cp_factor">[docs]</a>
+<span class="k">def</span> <span class="nf">Cp_factor</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">Cl</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">M_liquid</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculates factor relating changes in mass fraction of the liquid region to those of the slurry</span>
 
@@ -344,7 +363,10 @@
 
     <span class="k">return</span> <span class="n">Cp</span></div>
 
-<div class="viewcode-block" id="gravitational_freezing"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.gravitational_freezing">[docs]</a><span class="k">def</span> <span class="nf">gravitational_freezing</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">Cl</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
+
+<div class="viewcode-block" id="gravitational_freezing">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.gravitational_freezing">[docs]</a>
+<span class="k">def</span> <span class="nf">gravitational_freezing</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">Cl</span><span class="p">,</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculates the gravitational energy/entropy associated with reducing density of snow zone.</span>
 
@@ -379,7 +401,10 @@
 
     <span class="k">return</span> <span class="n">Qg_tilde</span><span class="p">,</span> <span class="n">Eg_tilde</span></div>
 
-<div class="viewcode-block" id="gravitational_melting"><a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.gravitational_melting">[docs]</a><span class="k">def</span> <span class="nf">gravitational_melting</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">Cp</span><span class="p">,</span> <span class="n">Cc</span><span class="p">,</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">Tcmb</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
+
+<div class="viewcode-block" id="gravitational_melting">
+<a class="viewcode-back" href="../../../../../../thermal_history.thermal_history.core_models.leeds.routines.snow.html#thermal_history.thermal_history.core_models.leeds.routines.snow.gravitational_melting">[docs]</a>
+<span class="k">def</span> <span class="nf">gravitational_melting</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">alpha_c</span><span class="p">,</span> <span class="n">Cp</span><span class="p">,</span> <span class="n">Cc</span><span class="p">,</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">Tcmb</span><span class="p">,</span> <span class="n">snow_index</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Calculates the gravitational energy/entropy associated with increasing density of liquid region</span>
 
@@ -418,6 +443,7 @@
         <span class="n">Eg_tilde</span> <span class="o">=</span> <span class="n">Qg_tilde</span><span class="o">/</span><span class="n">Tcmb</span>
 
     <span class="k">return</span> <span class="n">Qg_tilde</span><span class="p">,</span> <span class="n">Eg_tilde</span></div>
+
 </pre></div>
 
            </div>

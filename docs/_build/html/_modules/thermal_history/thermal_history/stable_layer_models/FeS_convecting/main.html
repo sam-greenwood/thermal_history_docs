@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.thermal_history.stable_layer_models.FeS_convecting.main &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
@@ -136,7 +138,9 @@
 <span class="c1">#!# indicates where method has changed from leeds_thermal</span>
 <span class="c1">#*# indicates where method has changed from conducting FeS model.</span>
 <span class="c1">#*# evolve method to account for FeS layer that is convecting</span>
-<div class="viewcode-block" id="evolve"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.evolve">[docs]</a><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="evolve">
+<a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.evolve">[docs]</a>
+<span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Evolve the stable layer, taking into account the presence of a liquid FeS layer.</span>
 <span class="sd">    Changes from leeds_thermal.main.evolve are commented by #!#</span>
 
@@ -273,8 +277,11 @@
     <span class="n">core</span><span class="o">.</span><span class="n">T_cmb</span><span class="p">,</span>  <span class="n">core</span><span class="o">.</span><span class="n">T_s</span> <span class="o">=</span> <span class="n">sl</span><span class="o">.</span><span class="n">T_cmb</span><span class="p">,</span> <span class="n">sl</span><span class="o">.</span><span class="n">T_s</span></div>
 
 
+
 <span class="c1">#!# Thermal method with FeS</span>
-<div class="viewcode-block" id="conducting_FeS"><a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.conducting_FeS">[docs]</a><span class="k">def</span> <span class="nf">conducting_FeS</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="conducting_FeS">
+<a class="viewcode-back" href="../../../../../thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.html#thermal_history.thermal_history.stable_layer_models.FeS_convecting.main.conducting_FeS">[docs]</a>
+<span class="k">def</span> <span class="nf">conducting_FeS</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Simple model taking the temperature of the FeS layer to be uniform.</span>
 
 <span class="sd">    Parameters</span>
@@ -552,6 +559,7 @@
 
     <span class="n">sl</span><span class="o">.</span><span class="n">lb_T</span> <span class="o">=</span> <span class="n">lb</span>
     <span class="n">sl</span><span class="o">.</span><span class="n">ub_T</span> <span class="o">=</span> <span class="n">ub</span></div>
+
 
 
 </pre></div>

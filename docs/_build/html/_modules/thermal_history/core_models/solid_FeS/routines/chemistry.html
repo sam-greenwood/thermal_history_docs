@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>thermal_history.core_models.solid_FeS.routines.chemistry &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
@@ -91,7 +93,9 @@
 <span class="n">Na</span> <span class="o">=</span> <span class="mf">6.022140857e23</span>   <span class="c1">#Avogadros Constant</span>
 
 
-<div class="viewcode-block" id="melting_curve"><a class="viewcode-back" href="../../../../../thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_curve">[docs]</a><span class="k">def</span> <span class="nf">melting_curve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<div class="viewcode-block" id="melting_curve">
+<a class="viewcode-back" href="../../../../../thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_curve">[docs]</a>
+<span class="k">def</span> <span class="nf">melting_curve</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the melting curve and sets the mass fraction of light element in the solid iron core (conc_s) according to</span>
 <span class="sd">    the relevant partitioning model.</span>
 <span class="sd">    Different methods for the paramterisation of the melting curve can be set by the core_melting_params parameter.</span>
@@ -259,7 +263,10 @@
     <span class="k">return</span> <span class="n">Tm_fe</span><span class="p">,</span> <span class="n">Tm</span><span class="p">,</span> <span class="n">dTm_dP</span></div>
 
 
-<div class="viewcode-block" id="melting_temp_R18"><a class="viewcode-back" href="../../../../../thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_temp_R18">[docs]</a><span class="k">def</span> <span class="nf">melting_temp_R18</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">conc_l</span><span class="p">,</span> <span class="n">melting_params</span><span class="p">):</span>
+
+<div class="viewcode-block" id="melting_temp_R18">
+<a class="viewcode-back" href="../../../../../thermal_history.core_models.solid_FeS.routines.chemistry.html#thermal_history.core_models.solid_FeS.routines.chemistry.melting_temp_R18">[docs]</a>
+<span class="k">def</span> <span class="nf">melting_temp_R18</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">conc_l</span><span class="p">,</span> <span class="n">melting_params</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Melting curve of Ruckreimen et al. (2018) for S rich Fe-S alloys.</span>
 
 <span class="sd">    Parameters</span>
@@ -308,6 +315,7 @@
     <span class="n">Tm_fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">Tm_fes</span> <span class="o">+</span> <span class="p">(</span><span class="n">Tm_fes</span><span class="o">-</span><span class="n">T_eutectic</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.3647</span><span class="o">-</span><span class="n">x_eu</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.3647</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">Tm_fe</span><span class="p">,</span> <span class="n">Tm</span><span class="p">,</span> <span class="n">dTm_dP</span></div>
+
 
 <span class="k">def</span> <span class="nf">liquidusFeC</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
     <span class="c1"># melting T of Fe-C for x &gt;=eutectic and derivatives with respect to p and x. do not use if p&gt;6GPa</span>

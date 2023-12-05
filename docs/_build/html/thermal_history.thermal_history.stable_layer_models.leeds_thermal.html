@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>leeds_thermal &mdash; thermal_history  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -99,14 +101,14 @@
            <div itemprop="articleBody">
              
   <section id="leeds-thermal">
-<h1>leeds_thermal<a class="headerlink" href="#leeds-thermal" title="Permalink to this heading"></a></h1>
+<h1>leeds_thermal<a class="headerlink" href="#leeds-thermal" title="Link to this heading"></a></h1>
 <p>(thermal_history.thermal_history.stable_layer_models.leeds_thermal)</p>
-<span class="target" id="module-thermal_history.thermal_history.stable_layer_models.leeds_thermal"></span><section class="tex2jax_ignore mathjax_ignore" id="overview">
-<h2>Overview:<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="overview">
+<span id="module-thermal_history.thermal_history.stable_layer_models.leeds_thermal"></span><h2>Overview:<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>Stable layer model for thermal stratification of Greenwood et al. (2021). In this model only the temperature structure of the stratified layer is used to evolve its size over time. This model must be used in conjunction with a core model.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="expected-attributes-of-other-regions">
-<h2>Expected attributes of other regions:<a class="headerlink" href="#expected-attributes-of-other-regions" title="Permalink to this heading"></a></h2>
+<h2>Expected attributes of other regions:<a class="headerlink" href="#expected-attributes-of-other-regions" title="Link to this heading"></a></h2>
 <p>Core must have the following attributes (i.e. model.core.X):</p>
 <table class="docutils align-default">
 <thead>
@@ -164,14 +166,14 @@
 </pre></div>
 </div>
 <section id="note-some-key-modelling-assumptions">
-<h3>Note some key modelling assumptions:<a class="headerlink" href="#note-some-key-modelling-assumptions" title="Permalink to this heading"></a></h3>
+<h3>Note some key modelling assumptions:<a class="headerlink" href="#note-some-key-modelling-assumptions" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Compositional changes in the core do not directly influence growth of a stratified layer.</p></li>
 <li><p>Once the entire core is thermally stable, only when the CMB heat flow exceeds the adiabatic heat flow at the CMB will the core convect again. This should be reasonable for a constant radial core conductivity profile, not necessarily true otherwise.</p></li>
 </ol>
 </section>
 <section id="references">
-<h3>References:<a class="headerlink" href="#references" title="Permalink to this heading"></a></h3>
+<h3>References:<a class="headerlink" href="#references" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Greenwood, S., Davies, C. J., &amp; Mound, J. E. (2021). On the evolution of thermally stratified layers at the top of Earth’s core. Physics of the Earth and Planetary Interiors, 106763.</p></li>
 </ul>
